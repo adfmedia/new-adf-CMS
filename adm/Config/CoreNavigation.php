@@ -51,6 +51,11 @@ class CoreNavigation implements NavigationInterface
                         'position'  => 90
                     ],
                     [
+                        'title'     => 'Modules',
+                        'url'       => route('adm.route', 'modules'),
+                        'position'  => 95
+                    ],
+                    [
                         'title'     => 'Admin users',
                         'url'       => route('adm.route', 'admin-users'),
                         'position'  => 100,

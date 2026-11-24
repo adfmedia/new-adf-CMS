@@ -3,9 +3,12 @@
 namespace App\Modules;
 
 use App\Models\InstalledModule;
+use Adm\Models\ChangeLog;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Throwable;
 use ZipArchive;
 
@@ -68,7 +71,7 @@ class ModuleManager
         }
 
         $Record = $this->saveRecord($Module, InstalledModule::STATUS_ENABLED, $first_install);
-        $this->afterChange('installed', $name);
+        $this->afterChange('Module installed (' . $Record->version . ')', $name, $Record);
 
         return $Record;
     }
@@ -102,7 +105,7 @@ class ModuleManager
         }
 
         $Record = $this->saveRecord($Module, InstalledModule::STATUS_ENABLED, false);
-        $this->afterChange('enabled', $name);
+        $this->afterChange('Module enabled', $name, $Record);
 
         return $Record;
     }
@@ -128,7 +131,7 @@ class ModuleManager
         $Record->last_error = null;
         $Record->save();
 
-        $this->afterChange('disabled', $name);
+        $this->afterChange('Module disabled', $name, $Record);
 
         return $Record;
     }
@@ -138,13 +141,15 @@ class ModuleManager
      * installing it again brings its data back. With $delete_data its
      * migrations are rolled back, dropping its tables.
      *
-     * Files stay in modules/<Name>; removing them comes with zip handling.
+     * With $remove_files the module folder is moved to modules/.backup, so
+     * it disappears from the site but can still be recovered.
      *
      * @param string $name
      * @param bool $delete_data
+     * @param bool $remove_files
      * @return InstalledModule
      */
-    public function uninstall(string $name, bool $delete_data = false): InstalledModule
+    public function uninstall(string $name, bool $delete_data = false, bool $remove_files = false): InstalledModule
     {
         $Record = $this->requireRecord($name);
         $this->assertNotCore($Record, 'uninstalled');
@@ -172,6 +177,19 @@ class ModuleManager
             }
         }
 
+        if ($remove_files) {
+            $Module = $this->Modules->onDisk($name);
+            if ($Module) {
+                File::deleteDirectory($Module->publicTargetPath());
+                $backup_dir = base_path('modules' . DIRECTORY_SEPARATOR . '.backup');
+                File::ensureDirectoryExists($backup_dir);
+                $backup = $backup_dir . DIRECTORY_SEPARATOR . $name . '-' . $Module->version() . '-' . date('Ymd-His');
+                if (!@rename($Module->path, $backup)) {
+                    throw new ModuleException('Could not move the ' . $name . ' folder to modules/.backup.');
+                }
+            }
+        }
+
         $Record->status = InstalledModule::STATUS_UNINSTALLED;
         $Record->status_changed_at = now();
         $Record->last_error = null;
@@ -181,7 +199,48 @@ class ModuleManager
         }
         $Record->save();
 
-        $this->afterChange($delete_data ? 'uninstalled (data deleted)' : 'uninstalled (data kept)', $name);
+        $this->afterChange(
+            'Module uninstalled' . ($delete_data ? ', data deleted' : ', data kept') . ($remove_files ? ', files removed' : ''),
+            $name,
+            $Record
+        );
+
+        return $Record;
+    }
+
+    /**
+     * Upgrade a module whose new files are already in modules/<Name>: run
+     * any new migrations, republish its assets and record the new version.
+     * An enabled module stays enabled; a disabled one stays disabled.
+     *
+     * @param string $name
+     * @return InstalledModule
+     */
+    public function upgrade(string $name): InstalledModule
+    {
+        $Record = $this->requireRecord($name);
+        $Module = $this->requireOnDisk($name);
+        $this->assertValidManifest($Module);
+
+        $from = $Record->version;
+        $was_enabled = $Record->isEnabled();
+
+        if ($was_enabled) {
+            $this->assertRequirementsMet($Module);
+        }
+
+        try {
+            $this->runMigrations($Module);
+            if ($was_enabled) {
+                $this->publishAssets($Module);
+            }
+        } catch (Throwable $e) {
+            $this->recordError($name, $Module, $e);
+            throw new ModuleException('Upgrading ' . $name . ' failed: ' . $e->getMessage(), 0, $e);
+        }
+
+        $Record = $this->saveRecord($Module, $was_enabled ? InstalledModule::STATUS_ENABLED : InstalledModule::STATUS_DISABLED, false);
+        $this->afterChange('Module upgraded from ' . $from . ' to ' . $Record->version, $name, $Record);
 
         return $Record;
     }
@@ -234,11 +293,14 @@ class ModuleManager
      */
     public static function checksum(string $module_path, array $relative_files): string
     {
-        sort($relative_files);
+        // Normalise to forward slashes before sorting so Windows and Linux agree
+        $relative_files = array_map(fn ($relative) => str_replace('\\', '/', $relative), $relative_files);
+        sort($relative_files, SORT_STRING);
+
         $context = hash_init('sha256');
         foreach ($relative_files as $relative) {
-            hash_update($context, str_replace('\\', '/', $relative) . "\0");
-            hash_update_file($context, $module_path . DIRECTORY_SEPARATOR . $relative);
+            hash_update($context, $relative . "\0");
+            hash_update_file($context, $module_path . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $relative));
         }
 
         return hash_final($context);
@@ -460,9 +522,26 @@ class ModuleManager
         }
     }
 
-    protected function afterChange(string $action, string $name): void
+    protected function afterChange(string $action, string $name, ?InstalledModule $Record = null): void
     {
-        Log::info('Module ' . $name . ' ' . $action);
+        Log::info($name . ': ' . $action);
+
+        // Record who did it in the CMS change log, when a CMS user is signed in
+        try {
+            $AdmUser = Auth::guard('adm')->user();
+            if ($AdmUser && $Record) {
+                ChangeLog::create([
+                    'changeable_type' => InstalledModule::class,
+                    'changeable_id'   => $Record->id,
+                    'language_id'     => \App\Helpers\LanguageHelper::getLanguage()?->id ?? 0,
+                    'change_type'     => Str::limit($action, 250, ''),
+                    'adm_user_id'     => $AdmUser->id,
+                ]);
+            }
+        } catch (Throwable $e) {
+            Log::warning('Could not write the module change log', ['exception' => $e->getMessage()]);
+        }
+
         $this->refresh();
     }
 

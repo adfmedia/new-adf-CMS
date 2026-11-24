@@ -43,6 +43,22 @@ class InstalledModule extends Model
         ];
     }
 
+    /**
+     * Key used by the CMS change log to load this record
+     */
+    public function getOwnerKeyName(): string
+    {
+        return 'id';
+    }
+
+    /**
+     * Name shown for this record in the CMS change log
+     */
+    public function getTitleAttribute(): string
+    {
+        return $this->name;
+    }
+
     public function isEnabled(): bool
     {
         return $this->status === self::STATUS_ENABLED;

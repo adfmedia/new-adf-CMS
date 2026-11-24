@@ -11,6 +11,7 @@ class ModuleUninstall extends Command
     protected $signature = 'cms:module:uninstall
         {name : Module name, e.g. News}
         {--delete-data : Also roll back its migrations, dropping its tables}
+        {--remove-files : Also move its folder to modules/.backup}
         {--force : Don\'t ask for confirmation}';
 
     protected $description = 'Uninstall a module. Its data is kept unless --delete-data is given';
@@ -27,7 +28,7 @@ class ModuleUninstall extends Command
         }
 
         try {
-            $Record = $Manager->uninstall($name, $delete);
+            $Record = $Manager->uninstall($name, $delete, (bool) $this->option('remove-files'));
         } catch (ModuleException $e) {
             $this->error($e->getMessage());
             return self::FAILURE;
