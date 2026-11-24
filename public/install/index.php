@@ -263,14 +263,15 @@ if ($view !== 'locked' && $_SERVER['REQUEST_METHOD'] === 'POST') {
                         $app = require $base . '/bootstrap/app.php';
                         $Kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
                         $Kernel->bootstrap();
+                        $Buffer = new Symfony\Component\Console\Output\BufferedOutput();
                         $exit = $Kernel->call('cms:install:finish', [
                             '--admin-name'     => $S['admin']['name'],
                             '--admin-email'    => $S['admin']['email'],
                             '--admin-password' => $S['admin']['password'],
                             '--modules'        => implode(',', $S['modules'] ?? []),
                             '--no-interaction' => true,
-                        ]);
-                        $output = trim($Kernel->output());
+                        ], $Buffer);
+                        $output = trim($Buffer->fetch());
 
                         if ($exit === 0) {
                             $S = [

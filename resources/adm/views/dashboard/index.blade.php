@@ -64,13 +64,8 @@
                     <p class="mt-1 text-sm text-gray-500">For help &amp; assistance, email or call support</p>
                 </div>
                 <div class="flex items-center">
-                    <div class="size-24 rounded-full ring-1 ring-black/5 p-2 shrink-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,256.000000) scale(0.100000,-0.100000)">
-                                <path fill="#003057" d="M380 2021 c0 -14 13 -21 60 -31 l60 -13 0 -697 0 -697 -60 -13 c-47 -10 -60 -17 -60 -31 0 -18 16 -19 373 -19 204 0 405 5 446 10 246 32 398 118 452 257 33 85 33 210 -1 278 -64 131 -235 223 -448 242 -40 3 -70 8 -68 10 2 3 37 9 78 14 249 31 388 150 388 330 0 154 -96 267 -280 331 -116 40 -217 48 -587 48 -338 0 -353 -1 -353 -19z m694 -70 c61 -34 107 -90 136 -168 42 -111 16 -260 -61 -347 -53 -61 -96 -77 -197 -74 l-87 3 -3 300 c-1 165 0 306 3 314 10 25 148 7 209 -28z m61 -695 c116 -50 187 -201 171 -366 -14 -143 -67 -229 -170 -280 -61 -30 -74 -33 -169 -34 l-102 -1 -3 340 c-1 187 0 346 3 354 8 20 216 10 270 -13z"/>
-                                <path fill="#E61B72" d="M1916 930 c-42 -13 -90 -49 -117 -88 -20 -30 -24 -48 -24 -112 0 -66 4 -82 27 -117 33 -50 113 -93 173 -93 60 0 140 43 173 93 23 35 27 51 27 117 0 66 -4 82 -27 117 -47 71 -149 108 -232 83z"/>
-                            </g>
-                        </svg>
+                    <div class="size-24 rounded-full ring-1 ring-black/5 p-5 shrink-0 bg-gray-900">
+                        <img src="{{ Vite::asset('resources/adm/images/adfmedia-logo.svg') }}" alt="adfmedia" width="32" height="32" class="w-full h-full">
                     </div>
                     <dl class="pl-6 text-gray-600">
                         <div class="flex items-center mb-3">
