@@ -51,6 +51,11 @@ class CoreNavigation implements NavigationInterface
                         'position'  => 90
                     ],
                     [
+                        'title'     => 'CMS settings',
+                        'url'       => route('adm.route', 'cms-settings'),
+                        'position'  => 94
+                    ],
+                    [
                         'title'     => 'Modules',
                         'url'       => route('adm.route', 'modules'),
                         'position'  => 95

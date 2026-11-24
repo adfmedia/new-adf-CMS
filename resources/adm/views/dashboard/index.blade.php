@@ -58,6 +58,8 @@
             </div>
         </div>
         <div class="w-full sm:w-1/3 sm:pl-4">
+            {{-- Super admins can turn this off in Settings > CMS settings --}}
+            @if( common_text('dashboard_support_details') !== '0' )
             <div class="bg-white shadow ring-1 ring-black/5 rounded-lg p-4">
                 <div class="border-b border-gray-200 pb-2 mb-2">
                     <h4 class="text-base font-semibold leading-6 text-gray-900">Support details</h4>
@@ -83,6 +85,7 @@
                     @endforeach
                 </dl>
             </div>
+            @endif
         </div>
     </div>
 

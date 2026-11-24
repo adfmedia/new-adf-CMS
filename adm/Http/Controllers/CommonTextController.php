@@ -34,6 +34,22 @@ class CommonTextController extends AdmController
     }
 
     /**
+     * Shows the CMS settings (super admins only)
+     * 
+     * @param ?string $method
+     * @return \Illuminate\View\View|Illuminate\Http\RedirectResponse
+     */
+    public function cms_settings(?string $method): View|RedirectResponse
+    {
+        $User = \Illuminate\Support\Facades\Auth::guard('adm')->user();
+        if (!$User || !$User->is_super_admin) {
+            abort(403, 'Only super admins can change CMS settings.');
+        }
+
+        return $this->handleTextGroupRequest('cms', $method);
+    }
+
+    /**
      * Handles a common text group request, performing the 
      * provided method on the group
      * 
@@ -193,6 +209,13 @@ class CommonTextController extends AdmController
         $StoredValues = CommonText::whereIn('field', $field_keys)->get();
         foreach ($StoredValues as $Value) {
             data_set($FormModel, $Value->field, $Value->value);
+        }
+
+        // Fields never saved yet show their default
+        foreach ($field_keys as $field) {
+            if (data_get($FormModel, $field) === null && isset(CommonTextConfig::$fields[$field]['default'])) {
+                data_set($FormModel, $field, CommonTextConfig::$fields[$field]['default']);
+            }
         }
     }
 }

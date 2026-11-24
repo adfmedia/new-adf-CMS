@@ -39,7 +39,7 @@
                                     @endif
                                     <div class="input-wrap">
                                         @if( view()->exists('crud.fields.form.' . $field_details['type']) )
-                                            @include('crud.fields.form.' . $field_details['type'])
+                                            @include('crud.fields.form.' . $field_details['type'], ['Item' => $FormModel])
                                         @else
                                             <div class="text-red-600 font-bold">Field blade missing for {{ $field_details['type'] }}</div>
                                         @endif

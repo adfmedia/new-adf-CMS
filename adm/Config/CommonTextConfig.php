@@ -23,7 +23,8 @@ class CommonTextConfig
      */
     public static $labelling    = [
         'core'      => ['title' => 'Common text',   'description' => 'Set and update various pieces of content across the website here'],
-        'social'    => ['title' => 'Social media',  'description' => 'Manage settings related to social media here']
+        'social'    => ['title' => 'Social media',  'description' => 'Manage settings related to social media here'],
+        'cms'       => ['title' => 'CMS settings',  'description' => 'Settings for how the CMS looks to this client. Only super admins can see this page.']
     ];
 
     /**
@@ -41,6 +42,9 @@ class CommonTextConfig
         ],
         'social'    => [
             'Social links'  => ['social_facebook', 'social_twitterx', 'social_linkedin', 'social_youtube', 'social_instagram']
+        ],
+        'cms'       => [
+            'Dashboard'     => ['dashboard_support_details']
         ]
     ];
 
@@ -55,6 +59,12 @@ class CommonTextConfig
      * @var array
      */
     public static $fields   = [
+        'dashboard_support_details' => [
+            'label'     => 'Show the Support details card',
+            'help'      => 'Turn this off for clients without a support package',
+            'type'      => 'boolean',
+            'default'   => 1
+        ],
         'website_email' => [
             'label'     => 'Website email address',
             'help'      => 'The main website email address',
