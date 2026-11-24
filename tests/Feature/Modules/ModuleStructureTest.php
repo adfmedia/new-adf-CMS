@@ -16,7 +16,7 @@ class ModuleStructureTest extends TestCase
 {
     public function test_every_listed_module_has_a_valid_manifest(): void
     {
-        foreach (config('modules.available') as $name) {
+        foreach (config('modules.declared', config('modules.available')) as $name) {
             $path = base_path('modules/' . $name . '/module.json');
             $this->assertFileExists($path, $name . ' is missing module.json');
 
@@ -33,9 +33,9 @@ class ModuleStructureTest extends TestCase
         $Modules = app(ModuleRepository::class);
 
         foreach (['Pages', 'GlobalBlocks', 'Forms', 'Search'] as $name) {
-            $this->assertTrue($Modules->find($name)?->isCore(), $name . ' should be core');
+            $this->assertTrue($Modules->onDisk($name)?->isCore(), $name . ' should be core');
         }
-        $this->assertFalse($Modules->find('News')?->isCore(), 'News should be optional');
+        $this->assertFalse($Modules->onDisk('News')?->isCore(), 'News should be optional');
     }
 
     public function test_module_views_are_registered_under_their_namespaces(): void

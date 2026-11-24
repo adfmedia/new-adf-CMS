@@ -62,6 +62,12 @@ class RouteController extends BaseController
             $this->throwNotFoundError();
         }
 
+        // Pages belonging to a disabled or uninstalled module are not found
+        $resource_module = \App\Modules\ModuleRepository::moduleNameForClass(get_class($LinkedResource));
+        if ($resource_module && !app(\App\Modules\ModuleRepository::class)->isEnabled($resource_module)) {
+            $this->throwNotFoundError();
+        }
+
         if ($Url->system_page) {
             $Response = $this->handleSystemPage($Url, $LinkedResource);
         } else {
@@ -166,6 +172,10 @@ class RouteController extends BaseController
 
         if (!$controller_class || !class_exists($controller_class)) {
             Log::debug('Controller ' . $controller_class . ' not found.');
+            $this->throwNotFoundError();
+        }
+        $controller_module = \App\Modules\ModuleRepository::moduleNameForClass($controller_class);
+        if ($controller_module && !app(\App\Modules\ModuleRepository::class)->isEnabled($controller_module)) {
             $this->throwNotFoundError();
         }
         if (!method_exists($controller_class, $method)) {

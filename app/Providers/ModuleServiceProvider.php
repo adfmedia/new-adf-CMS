@@ -35,7 +35,17 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $modules = $this->app->make(ModuleRepository::class)->enabled();
+        $Repository = $this->app->make(ModuleRepository::class);
+
+        // config('modules.available') now reflects the registry, so existing
+        // code that reads it only sees enabled modules. The list declared in
+        // config/modules.php stays available as config('modules.declared').
+        if (config('modules.declared') === null) {
+            config(['modules.declared' => (array) config('modules.available', [])]);
+        }
+        config(['modules.available' => $Repository->enabledNames()]);
+
+        $modules = $Repository->enabled();
 
         foreach ($modules as $Module) {
             $this->bootModule($Module);
