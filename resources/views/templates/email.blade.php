@@ -30,7 +30,7 @@ body,td { color:#2f2f2f; font:11px/1.35em "Poppins", sans-serif; }
                 <td align="center" valign="top" style="padding:20px 0 20px 0">
                     <table bgcolor="FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
                         <tr>
-                            <td valign="top" bgcolor="#170656" align="center" style="background:#170656;text-align: center; padding-bottom: 0;">
+                            <td valign="top" bgcolor="#0a0a0a" align="center" style="background:#0a0a0a;text-align: center; padding-bottom: 0;">
                                 <a href="{{ url('/') }}">
                                     <img 
                                         src="{{ Vite::asset('resources/images/email/email-header-logo.png') }}" 
@@ -43,7 +43,7 @@ body,td { color:#2f2f2f; font:11px/1.35em "Poppins", sans-serif; }
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="#170656" align="center" style="background:#170656; text-align:center;">
+                            <td bgcolor="#0a0a0a" align="center" style="background:#0a0a0a; text-align:center;">
                                 <h2 style="font-size:24px; line-height:36px; margin:0; color: #ffffff;">@yield('heading')</h2>
                             </td>
                         </tr>
@@ -53,7 +53,7 @@ body,td { color:#2f2f2f; font:11px/1.35em "Poppins", sans-serif; }
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="#170656" align="center" style="background:#170656; text-align:center;"><center>
+                            <td bgcolor="#0a0a0a" align="center" style="background:#0a0a0a; text-align:center;"><center>
                                 <p style="font-size:12px; line-height:16px; margin:0; color: #ffffff;"><a href="{{ url('/') }}" style="color:#ffffff;">{{ url('/') }}</a></p>
                             </td>
                         </tr>
