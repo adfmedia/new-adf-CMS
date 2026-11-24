@@ -51,15 +51,15 @@ class ModuleRepository
             return $this->enabled;
         }
 
-        $this->enabled = [];
+        $enabled = [];
         foreach ($this->enabledNames() as $name) {
             $path = base_path('modules' . DIRECTORY_SEPARATOR . $name);
             if (is_dir($path)) {
-                $this->enabled[$name] = Module::fromPath($name, $path);
+                $enabled[$name] = Module::fromPath($name, $path);
             }
         }
 
-        return $this->enabled;
+        return $this->enabled = $enabled;
     }
 
     /**
@@ -77,7 +77,7 @@ class ModuleRepository
         $cache_path = self::cachePath();
         if (is_file($cache_path)) {
             $cached = require $cache_path;
-            if (is_array($cached) && isset($cached['enabled']) && is_array($cached['enabled'])) {
+            if (is_array($cached) && !empty($cached['enabled']) && is_array($cached['enabled'])) {
                 $this->source = 'cache';
                 return $cached['enabled'];
             }
@@ -251,11 +251,16 @@ class ModuleRepository
                 return null;
             }
 
-            return InstalledModule::query()
+            $names = InstalledModule::query()
                 ->where('status', InstalledModule::STATUS_ENABLED)
                 ->orderBy('name')
                 ->pluck('name')
                 ->all();
+
+            // An installed site always has its core modules enabled, so an
+            // empty registry means it hasn't been filled yet: don't trust
+            // (or cache) it, use the config list instead
+            return $names === [] ? null : $names;
         } catch (Throwable $e) {
             return null;
         }

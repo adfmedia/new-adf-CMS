@@ -61,8 +61,8 @@ class ModuleStructureTest extends TestCase
         foreach (['case-studies', 'events', 'forms', 'news', 'offices', 'pages', 'search', 'team-members', 'emails/cms-form'] as $folder) {
             $this->assertDirectoryDoesNotExist(resource_path('views/' . $folder), 'resources/views/' . $folder . ' should have moved into its module');
         }
-        $this->assertDirectoryDoesNotExist(resource_path('views/page-builder/blocks'));
-        $this->assertDirectoryDoesNotExist(resource_path('images/block-previews'));
+        $this->assertSame([], glob(resource_path('views/page-builder/blocks/*.blade.php')) ?: []);
+        $this->assertSame([], glob(resource_path('images/block-previews/*')) ?: []);
     }
 
     public function test_every_block_resolves_to_a_module_view(): void

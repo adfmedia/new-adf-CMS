@@ -97,7 +97,8 @@ class RouteController extends AdmController
         }
 
         // Finally, if no controller found, throw error
-        throw new Exception('Section ' . $section_method . ' not found in system controllers.');
+        // Unknown section, or one belonging to a disabled module
+        abort(404, 'Section ' . $section_method . ' not found in system controllers.');
     }
 
     /**
