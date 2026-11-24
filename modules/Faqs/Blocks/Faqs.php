@@ -10,11 +10,11 @@ class Faqs extends AbstractBlock
     public static $title        = 'FAQs';
     public static $description  = 'Add a category of FAQs to the page';
     public static $preview      = [
-        'src'       => 'images/block-previews/faqs.png',
+        'src'       => 'previews/faqs.png',
         'alt'       => 'FAQs block preview',
         'width'     => 1581,
         'height'    => 297,
-        'viteable'  => true
+        'module_asset' => true
     ];
 
     public static $fields       = [

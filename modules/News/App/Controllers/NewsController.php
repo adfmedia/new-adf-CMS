@@ -20,7 +20,7 @@ class NewsController extends Controller
 
         $Articles = $this->getListingArticles(0, $ListingPage);
         return view(
-            'news.listing',
+            'news::listing',
             [
                 'Page'          => $ListingPage,
                 'categories'    => $this->getSidebarCategories(),
@@ -40,7 +40,7 @@ class NewsController extends Controller
 
         $Articles = $this->getListingArticles($Category->news_category_id, $Category);
         return view(
-            'news.listing',
+            'news::listing',
             [
                 'Page'          => $Category,
                 'categories'    => $this->getSidebarCategories(),
@@ -55,7 +55,7 @@ class NewsController extends Controller
     public function article(NewsArticle $Article)
     {
         return view(
-            'news.article',
+            'news::article',
             [
                 'Page'          => $Article,
                 'categories'    => $this->getSidebarCategories(),
@@ -70,7 +70,7 @@ class NewsController extends Controller
         $Articles = $this->getListingArticles($category_id, $Page);
 
         return response()->json([
-            'listings'  => view('news.partials.ajax-tiles', ['Articles' => $Articles])->render(),
+            'listings'  => view('news::partials.ajax-tiles', ['Articles' => $Articles])->render(),
             'has_more'  => $Articles->hasMorePages()
         ]);
     }

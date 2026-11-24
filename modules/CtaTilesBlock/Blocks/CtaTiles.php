@@ -12,11 +12,11 @@ class CtaTiles extends AbstractBlock
     public static $title        = 'CTA Tiles';
     public static $description  = 'Contains a repeatable set of image, heading & CTA';
     public static $preview      = [
-        'src'       => 'images/block-previews/cta-tiles.png',
+        'src'       => 'previews/cta-tiles.png',
         'alt'       => 'CTA tiles block preview',
         'width'     => 1559,
         'height'    => 395,
-        'viteable'  => true
+        'module_asset' => true
     ];
 
     public static $fields       = [

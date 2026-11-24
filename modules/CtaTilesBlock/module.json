@@ -1,0 +1,19 @@
+{
+    "name": "CtaTilesBlock",
+    "version": "1.0.0",
+    "description": "Page builder call-to-action tiles block",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "cta-tiles-block",
+        "migrations": false,
+        "blocks": [
+            "CtaTiles"
+        ],
+        "public": true
+    }
+}

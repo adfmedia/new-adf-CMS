@@ -1,0 +1,19 @@
+{
+    "name": "BannerBlock",
+    "version": "1.0.0",
+    "description": "Page builder banner block",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "banner-block",
+        "migrations": false,
+        "blocks": [
+            "Banner"
+        ],
+        "public": true
+    }
+}

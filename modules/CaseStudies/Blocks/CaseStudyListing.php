@@ -13,11 +13,11 @@ class CaseStudyListing extends AbstractBlock
     public static $title        = 'Case study listing';
     public static $description  = 'Contains a listing of case studies';
     public static $preview      = [
-        'src'       => 'images/block-previews/case-study-listing.png',
+        'src'       => 'previews/case-study-listing.png',
         'alt'       => 'Case study listing block preview',
         'width'     => 1599,
         'height'    => 596,
-        'viteable'  => true
+        'module_asset' => true
     ];
 
     public static $fields       = [

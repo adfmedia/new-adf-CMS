@@ -1,0 +1,19 @@
+{
+    "name": "WysiwygBlock",
+    "version": "1.0.0",
+    "description": "Page builder rich text block",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "wysiwyg-block",
+        "migrations": false,
+        "blocks": [
+            "Wysiwyg"
+        ],
+        "public": true
+    }
+}

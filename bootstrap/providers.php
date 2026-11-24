@@ -7,8 +7,8 @@ return [
     // Custom Auth service provider (reset password links for both FE & CMS users)
     App\Providers\AuthServiceProvider::class,
 
-    // Custom Migration service provider (run DB migrations in modules)
-    App\Providers\ModuleMigrationServiceProvider::class,
+    // Module service provider (module views, migrations, routes)
+    App\Providers\ModuleServiceProvider::class,
 
     // Service provider for Laravel HTML package
     Spatie\Html\HtmlServiceProvider::class,

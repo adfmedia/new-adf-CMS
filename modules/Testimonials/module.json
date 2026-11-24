@@ -1,0 +1,19 @@
+{
+    "name": "Testimonials",
+    "version": "1.0.0",
+    "description": "Testimonials and a testimonials block",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "testimonials",
+        "migrations": true,
+        "blocks": [
+            "Testimonials"
+        ],
+        "public": true
+    }
+}

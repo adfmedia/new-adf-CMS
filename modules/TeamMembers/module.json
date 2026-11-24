@@ -1,0 +1,17 @@
+{
+    "name": "TeamMembers",
+    "version": "1.0.0",
+    "description": "Team member profiles with listing and detail pages",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "team-members",
+        "migrations": true,
+        "blocks": [],
+        "public": false
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Pages",
+    "version": "1.0.0",
+    "description": "Standard and home pages built with the page builder",
+    "core": true,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "pages",
+        "migrations": true,
+        "blocks": [],
+        "public": false
+    }
+}

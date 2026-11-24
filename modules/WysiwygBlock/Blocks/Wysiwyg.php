@@ -9,11 +9,11 @@ class Wysiwyg extends AbstractBlock
     public static $title        = 'Heading & content';
     public static $description  = 'Contains WYSIWYG content & an optional heading';
     public static $preview      = [
-        'src'       => 'images/block-previews/wysiwyg.png',
+        'src'       => 'previews/wysiwyg.png',
         'alt'       => 'WYSIWYG block preview',
         'width'     => 1561,
         'height'    => 519,
-        'viteable'  => true
+        'module_asset' => true
     ];
 
     public static $fields       = [

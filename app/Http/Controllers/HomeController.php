@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index(Page $Page): View
     {
         return view(
-            'pages.home',
+            'pages::home',
             [
                 'Page'  => $Page
             ]

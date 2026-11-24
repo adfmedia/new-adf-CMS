@@ -8,8 +8,8 @@ use Modules\Forms\Models\FormSubmission;
 
 class InternalMail extends Mailable
 {
-    protected $blade_view   = 'emails.cms-form.internal';
-    protected $text_view    = 'emails.cms-form.internal__plain';
+    protected $blade_view   = 'forms::emails.internal';
+    protected $text_view    = 'forms::emails.internal__plain';
 
     public function __construct(public Form $Form, public FormSubmission $FormSubmission)
     {

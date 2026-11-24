@@ -9,11 +9,11 @@ class LogosAndContent extends AbstractBlock
     public static $title        = 'Logos & content';
     public static $description  = 'Contains a grid of logos, heading, content & optional CTAs';
     public static $preview      = [
-        'src'       => 'images/block-previews/logos-and-content.png',
+        'src'       => 'previews/logos-and-content.png',
         'alt'       => 'Logos and content block preview',
         'width'     => 1291,
         'height'    => 497,
-        'viteable'  => true
+        'module_asset' => true
     ];
 
     public static $fields       = [

@@ -20,7 +20,7 @@ class SearchController extends Controller
         }
 
         return view(
-            'search.results',
+            'search::results',
             [
                 'Page'          => $SearchPage,
                 'search_term'   => $search_term,

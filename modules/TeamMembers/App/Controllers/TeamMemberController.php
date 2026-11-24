@@ -12,7 +12,7 @@ class TeamMemberController extends Controller
     public function index(Page $Page)
     {
         return view(
-            'team-members.listing',
+            'team-members::listing',
             [
                 'Page'          => $Page,
                 'TeamMembers'   => TeamMember::priorityOrder()->get(),
@@ -24,7 +24,7 @@ class TeamMemberController extends Controller
     public function team_member(TeamMember $TeamMember)
     {
         return view(
-            'team-members.team-member',
+            'team-members::team-member',
             [
                 'Page'          => $TeamMember,
                 'breadcrumbs'   => RouteHelper::generateBreadcrumbs($TeamMember->url)

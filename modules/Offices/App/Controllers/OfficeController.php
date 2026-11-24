@@ -12,7 +12,7 @@ class OfficeController extends Controller
     public function index(Page $Page)
     {
         return view(
-            'offices.listing',
+            'offices::listing',
             [
                 'Page'          => $Page,
                 'Offices'       => Office::priorityOrder()->get(),
@@ -24,7 +24,7 @@ class OfficeController extends Controller
     public function office(Office $Office)
     {
         return view(
-            'offices.office',
+            'offices::office',
             [
                 'Page'          => $Office,
                 'breadcrumbs'   => RouteHelper::generateBreadcrumbs($Office->url)

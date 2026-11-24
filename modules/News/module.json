@@ -1,0 +1,19 @@
+{
+    "name": "News",
+    "version": "1.0.0",
+    "description": "News articles, categories, authors and a news listing block",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "news",
+        "migrations": true,
+        "blocks": [
+            "NewsListing"
+        ],
+        "public": true
+    }
+}

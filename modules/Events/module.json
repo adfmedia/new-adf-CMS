@@ -1,0 +1,17 @@
+{
+    "name": "Events",
+    "version": "1.0.0",
+    "description": "Events with listing and detail pages",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "events",
+        "migrations": true,
+        "blocks": [],
+        "public": false
+    }
+}

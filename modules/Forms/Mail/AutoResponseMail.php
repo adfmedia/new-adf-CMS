@@ -10,7 +10,7 @@ use Modules\Forms\Models\FormSubmission;
 
 class AutoResponseMail extends Mailable
 {
-    protected $blade_view   = 'emails.cms-form.auto-response';
+    protected $blade_view   = 'forms::emails.auto-response';
 
     public function __construct(public Form $Form, public FormSubmission $FormSubmission)
     {

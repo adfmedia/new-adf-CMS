@@ -9,11 +9,11 @@ class Video extends AbstractBlock
     public static $title        = 'Popup video';
     public static $description  = 'Add a block containing an image, heading & playable video to the page';
     public static $preview      = [
-        'src'       => 'images/block-previews/video.png',
+        'src'       => 'previews/video.png',
         'alt'       => 'Video block preview',
         'width'     => 1565,
         'height'    => 614,
-        'viteable'  => true
+        'module_asset' => true
     ];
 
     public static $fields       = [

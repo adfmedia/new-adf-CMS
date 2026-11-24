@@ -9,11 +9,11 @@ class ContentWithImage extends AbstractBlock
     public static $title        = 'Content & image';
     public static $description  = 'Contains content, an image, with an optional heading & CTAs';
     public static $preview      = [
-        'src'       => 'images/block-previews/content-with-image.png',
+        'src'       => 'previews/content-with-image.png',
         'alt'       => 'Content with image block preview',
         'width'     => 1546,
         'height'    => 775,
-        'viteable'  => true
+        'module_asset' => true
     ];
 
     public static $fields       = [

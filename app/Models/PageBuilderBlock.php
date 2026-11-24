@@ -84,6 +84,43 @@ class PageBuilderBlock extends Model
     }
 
     /**
+     * Return the full view name used to render the block.
+     *
+     * Blocks render from their module's views (e.g. news::blocks.news_listing),
+     * which a site can override in resources/views/vendor/<namespace>/blocks.
+     * A view at resources/views/page-builder/blocks/<blade_file> still wins,
+     * so older site-specific block templates keep working.
+     *
+     * Returns null when the block's module is not enabled or its class no
+     * longer exists, so the block is skipped rather than breaking the page.
+     *
+     * @return Attribute
+     */
+    protected function viewName(): Attribute
+    {
+        $Block = $this;
+        return Attribute::make(
+            get: function (mixed $value) use ($Block) {
+                if (empty($Block->block_class) || !class_exists($Block->block_class)) {
+                    return null;
+                }
+
+                $legacy_view = 'page-builder.blocks.' . $Block->blade_file;
+                if (view()->exists($legacy_view)) {
+                    return $legacy_view;
+                }
+
+                $Module = app(\App\Modules\ModuleRepository::class)->forClass($Block->block_class);
+                if (!$Module) {
+                    return null;
+                }
+
+                return $Module->viewNamespace() . '::blocks.' . $Block->blade_file;
+            }
+        )->shouldCache();
+    }
+
+    /**
      * Returns an instance of the block configuration class for this
      * block
      * 

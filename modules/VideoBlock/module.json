@@ -1,0 +1,19 @@
+{
+    "name": "VideoBlock",
+    "version": "1.0.0",
+    "description": "Page builder video block",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "video-block",
+        "migrations": false,
+        "blocks": [
+            "Video"
+        ],
+        "public": true
+    }
+}

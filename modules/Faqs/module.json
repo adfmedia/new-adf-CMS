@@ -1,0 +1,19 @@
+{
+    "name": "Faqs",
+    "version": "1.0.0",
+    "description": "FAQs and an FAQ page builder block",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "faqs",
+        "migrations": true,
+        "blocks": [
+            "Faqs"
+        ],
+        "public": true
+    }
+}

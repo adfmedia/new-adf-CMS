@@ -1,0 +1,17 @@
+{
+    "name": "Search",
+    "version": "1.0.0",
+    "description": "Site search results page",
+    "core": true,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "search",
+        "migrations": true,
+        "blocks": [],
+        "public": false
+    }
+}

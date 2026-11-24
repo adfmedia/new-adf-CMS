@@ -13,11 +13,11 @@ class NewsListing extends AbstractBlock
     public static $title        = 'News listing';
     public static $description  = 'Contains a listing of news articles';
     public static $preview      = [
-        'src'       => 'images/block-previews/news-listing.png',
+        'src'       => 'previews/news-listing.png',
         'alt'       => 'News listing block preview',
         'width'     => 1571,
         'height'    => 678,
-        'viteable'  => true
+        'module_asset' => true
     ];
 
     public static $fields       = [

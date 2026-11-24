@@ -92,5 +92,6 @@
 
 /* Source file detection */
 @source '../../resources/views';
+@source '../../modules/*/Views';
 @source '../../resources/js';
 @source '../../config/theme_map.php';

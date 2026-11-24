@@ -13,11 +13,11 @@ class Testimonials extends AbstractBlock
     public static $title        = 'Testimonials';
     public static $description  = 'Add a scrolling carousel of testimonials';
     public static $preview      = [
-        'src'       => 'images/block-previews/testimonials.png',
+        'src'       => 'previews/testimonials.png',
         'alt'       => 'Testimonials block preview',
         'width'     => 1573,
         'height'    => 526,
-        'viteable'  => true
+        'module_asset' => true
     ];
 
     public static $fields       = [

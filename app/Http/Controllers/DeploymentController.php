@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Providers\ModuleMigrationServiceProvider;
+use App\Providers\ModuleServiceProvider;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -90,7 +90,7 @@ class DeploymentController extends Controller
         ]);
 
         // Then, run migrations in module paths
-        foreach (ModuleMigrationServiceProvider::getModuleMigrationPaths() as $mod_path) {
+        foreach (ModuleServiceProvider::getModuleMigrationPaths() as $mod_path) {
             Artisan::call('migrate', [
                 '--force'   => true,
                 '--path'    => $mod_path

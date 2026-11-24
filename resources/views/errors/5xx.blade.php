@@ -7,7 +7,7 @@
     </div>
 
     @include(
-        'page-builder.blocks.wysiwyg',
+        'includes.common.content',
         [
             'heading'   => '',
             'content'   => '<p>Sorry, we can\'t find what you\'re looking for. Please use the website menus, or <a href="' . route('theme') . '">go to the home page</a>.</p>'

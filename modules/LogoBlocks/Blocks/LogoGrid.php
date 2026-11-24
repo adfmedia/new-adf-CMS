@@ -9,11 +9,11 @@ class LogoGrid extends AbstractBlock
     public static $title        = 'Logo grid';
     public static $description  = 'Contains a grid of logos';
     public static $preview      = [
-        'src'       => 'images/block-previews/logo-grid.png',
+        'src'       => 'previews/logo-grid.png',
         'alt'       => 'Logo grid block preview',
         'width'     => 1266,
         'height'    => 356,
-        'viteable'  => true
+        'module_asset' => true
     ];
 
     public static $fields       = [

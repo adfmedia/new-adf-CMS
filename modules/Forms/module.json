@@ -1,0 +1,19 @@
+{
+    "name": "Forms",
+    "version": "1.0.0",
+    "description": "Form builder, form submissions, notification emails and a form block",
+    "core": true,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "forms",
+        "migrations": true,
+        "blocks": [
+            "Form"
+        ],
+        "public": true
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "name": "ContentWithImageBlock",
+    "version": "1.0.0",
+    "description": "Page builder content with image block",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "content-with-image-block",
+        "migrations": false,
+        "blocks": [
+            "ContentWithImage"
+        ],
+        "public": true
+    }
+}

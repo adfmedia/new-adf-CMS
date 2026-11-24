@@ -11,7 +11,7 @@ class PageController extends Controller
     public function index(Page $Page)
     {
         return view(
-            'pages.page',
+            'pages::page',
             [
                 'Page'          => $Page,
                 'breadcrumbs'   => RouteHelper::generateBreadcrumbs($Page->url)

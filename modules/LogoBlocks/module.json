@@ -1,0 +1,20 @@
+{
+    "name": "LogoBlocks",
+    "version": "1.0.0",
+    "description": "Logo grid and logos with content page builder blocks",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "logo-blocks",
+        "migrations": false,
+        "blocks": [
+            "LogoGrid",
+            "LogosAndContent"
+        ],
+        "public": true
+    }
+}

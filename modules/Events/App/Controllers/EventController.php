@@ -19,7 +19,7 @@ class EventController extends Controller
     public function index(Page $Page)
     {
         return view(
-            'events.listing',
+            'events::listing',
             [
                 'Page'          => $Page,
                 'breadcrumbs'   => RouteHelper::generateBreadcrumbs($Page->url),
@@ -34,7 +34,7 @@ class EventController extends Controller
     public function category(EventCategory $Page)
     {
         return view(
-            'events.listing',
+            'events::listing',
             [
                 'Page'          => $Page,
                 'breadcrumbs'   => RouteHelper::generateBreadcrumbs($Page->url),
@@ -49,7 +49,7 @@ class EventController extends Controller
     public function event(Event $Page)
     {
         return view(
-            'events.event',
+            'events::event',
             [
                 'Page'          => $Page,
                 'breadcrumbs'   => RouteHelper::generateBreadcrumbs($Page->url),

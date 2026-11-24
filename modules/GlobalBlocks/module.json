@@ -1,0 +1,19 @@
+{
+    "name": "GlobalBlocks",
+    "version": "1.0.0",
+    "description": "Reusable common blocks that can be placed on many pages",
+    "core": true,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "global-blocks",
+        "migrations": true,
+        "blocks": [
+            "CommonBlock"
+        ],
+        "public": true
+    }
+}

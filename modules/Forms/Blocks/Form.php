@@ -10,11 +10,11 @@ class Form extends AbstractBlock
     public static $title        = 'Form';
     public static $description  = 'Add a form to the page';
     public static $preview      = [
-        'src'       => 'images/block-previews/form.png',
+        'src'       => 'previews/form.png',
         'alt'       => 'Form block preview',
         'width'     => 1565,
         'height'    => 376,
-        'viteable'  => true
+        'module_asset' => true
     ];
 
     public static $fields       = [

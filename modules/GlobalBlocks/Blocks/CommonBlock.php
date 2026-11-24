@@ -14,11 +14,11 @@ class CommonBlock extends AbstractBlock
     public static $description = 'Add a preset common block to the page';
     public static $enable_global_fields = false;
     public static $preview     = [
-        'src'       => 'images/block-previews/common-block.png',
+        'src'       => 'previews/common-block.png',
         'alt'       => 'Common block block preview',
         'width'     => 1889,
         'height'    => 503,
-        'viteable'  => true,
+        'module_asset' => true,
     ];
 
     public static $fields = [

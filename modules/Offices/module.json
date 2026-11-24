@@ -1,0 +1,17 @@
+{
+    "name": "Offices",
+    "version": "1.0.0",
+    "description": "Office locations with listing and detail pages",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "offices",
+        "migrations": true,
+        "blocks": [],
+        "public": false
+    }
+}

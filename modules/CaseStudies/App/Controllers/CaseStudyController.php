@@ -20,7 +20,7 @@ class CaseStudyController extends Controller
 
         $Articles = $this->getListingArticles(0, $ListingPage);
         return view(
-            'case-studies.listing',
+            'case-studies::listing',
             [
                 'Page'          => $ListingPage,
                 'categories'    => $this->getSidebarCategories(),
@@ -40,7 +40,7 @@ class CaseStudyController extends Controller
 
         $Articles = $this->getListingArticles($Category->case_study_category_id, $Category);
         return view(
-            'case-studies.listing',
+            'case-studies::listing',
             [
                 'Page'          => $Category,
                 'categories'    => $this->getSidebarCategories(),
@@ -55,7 +55,7 @@ class CaseStudyController extends Controller
     public function article(CaseStudy $CaseStudy)
     {
         return view(
-            'case-studies.article',
+            'case-studies::article',
             [
                 'Page'          => $CaseStudy,
                 'categories'    => $this->getSidebarCategories(),
@@ -70,7 +70,7 @@ class CaseStudyController extends Controller
         $Articles = $this->getListingArticles($category_id, $Page);
 
         return response()->json([
-            'listings'  => view('case-studies.partials.ajax-tiles', ['Articles' => $Articles])->render(),
+            'listings'  => view('case-studies::partials.ajax-tiles', ['Articles' => $Articles])->render(),
             'has_more'  => $Articles->hasMorePages()
         ]);
     }

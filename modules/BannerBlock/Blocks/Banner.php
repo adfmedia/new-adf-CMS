@@ -9,11 +9,11 @@ class Banner extends AbstractBlock
     public static $title        = 'Banner';
     public static $description  = 'Contains an image, heading & optional CTAs';
     public static $preview      = [
-        'src'       => 'images/block-previews/banner.png',
+        'src'       => 'previews/banner.png',
         'alt'       => 'Banner block preview',
         'width'     => 1899,
         'height'    => 517,
-        'viteable'  => true
+        'module_asset' => true
     ];
 
     public static $fields       = [

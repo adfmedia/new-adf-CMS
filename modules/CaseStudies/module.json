@@ -1,0 +1,19 @@
+{
+    "name": "CaseStudies",
+    "version": "1.0.0",
+    "description": "Case study articles, listing pages and a case study listing block",
+    "core": false,
+    "requires": {
+        "cms": ">=1.0",
+        "php": ">=8.3",
+        "modules": []
+    },
+    "provides": {
+        "views": "case-studies",
+        "migrations": true,
+        "blocks": [
+            "CaseStudyListing"
+        ],
+        "public": true
+    }
+}

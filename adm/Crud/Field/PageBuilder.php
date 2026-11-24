@@ -171,7 +171,14 @@ class PageBuilder extends Field
             if (empty($preview_image) || !is_array($preview_image) || empty($preview_image['src'])) {
                 $preview_image = false;
             } else {
-                if (isset($preview_image['viteable']) && $preview_image['viteable']) {
+                if (!empty($preview_image['module_asset'])) {
+                    // Image lives in the block's module, at modules/<Name>/Public/<src>
+                    $Module = app(\App\Modules\ModuleRepository::class)->forClass($BlockClass->getName());
+                    $preview_image['src'] = $Module ? $Module->assetUrl($preview_image['src']) : false;
+                    if ($preview_image['src'] === false) {
+                        $preview_image = false;
+                    }
+                } elseif (isset($preview_image['viteable']) && $preview_image['viteable']) {
                     try {
                         $preview_image['src'] = Vite::asset('resources/' . $preview_image['src']);
                     } catch (Exception $e) {}
