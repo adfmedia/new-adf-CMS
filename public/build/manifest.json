@@ -74,7 +74,7 @@
     ]
   },
   "resources/adm/css/style.css": {
-    "file": "assets/style-CevhbPkF.css",
+    "file": "assets/style-Db9gJSd1.css",
     "name": "style",
     "names": [
       "style.css"
@@ -82,13 +82,9 @@
     "src": "resources/adm/css/style.css",
     "isEntry": true
   },
-  "resources/adm/images/bespoke-logo-white.svg": {
-    "file": "assets/bespoke-logo-white-DTPEljL4.svg",
-    "src": "resources/adm/images/bespoke-logo-white.svg"
-  },
-  "resources/adm/images/bespoke-logo.svg": {
-    "file": "assets/bespoke-logo-DDIcTPhq.svg",
-    "src": "resources/adm/images/bespoke-logo.svg"
+  "resources/adm/images/adfmedia-logo.svg": {
+    "file": "assets/adfmedia-logo-BY76XWUe.svg",
+    "src": "resources/adm/images/adfmedia-logo.svg"
   },
   "resources/adm/js/components/fields/colour.js": {
     "file": "assets/colour-Bq1cYcjD.js",
@@ -269,7 +265,7 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-BSz9RWR3.css",
+    "file": "assets/app-DD4ZHRJI.css",
     "name": "app",
     "names": [
       "app.css"

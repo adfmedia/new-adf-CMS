@@ -6,11 +6,11 @@
     <div class="w-full max-w-md space-y-8 bg-gray-50 p-8 rounded-lg shadow-xl">
         <div class="text-center">
             <img
-                class="mx-auto h-20 w-auto"
-                src="{{ Vite::asset('resources/adm/images/bespoke-logo.svg') }}"
+                class="mx-auto h-20 w-20 rounded-full bg-gray-900 p-3"
+                src="{{ Vite::asset('resources/adm/images/adfmedia-logo.svg') }}"
                 alt=""
-                width="255"
-                height="82"
+                width="32"
+                height="32"
             >
             @if(isset($success) && $success)
                 <div class="pt-4 mb-4 font-semibold text-sm text-green-600">

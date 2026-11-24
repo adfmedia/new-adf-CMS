@@ -14,10 +14,10 @@ $navigation = SidebarNavigation::build();
         <div class="flex shrink-0 items-center px-4">
             <img
                 class="h-16 w-auto"
-                src="{{ Vite::asset('resources/adm/images/bespoke-logo-white.svg') }}"
-                alt="Bespoke logo"
-                width="591"
-                height="197"
+                src="{{ Vite::asset('resources/adm/images/adfmedia-logo.svg') }}"
+                alt="adfmedia logo"
+                width="32"
+                height="32"
                 loading="lazy"
             >
         </div>
