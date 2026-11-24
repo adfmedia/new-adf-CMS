@@ -8,7 +8,9 @@ use App\Models\InstalledModule;
 use App\Modules\ModuleManager;
 use App\Modules\ModuleRepository;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use RuntimeException;
 
@@ -82,7 +84,12 @@ class InstallFinisher
             $this->log[] = 'Installed ' . $name;
         }
 
-        // 5. Assets and caches
+        // 5. A starter home page, so the front end has something to show
+        if ($this->createStarterHomePage((string) config('app.name', 'Our new site'))) {
+            $this->log[] = 'Created a starter home page';
+        }
+
+        // 6. Assets and caches
         $this->call('cms:modules:publish');
         $this->Manager->refresh();
 
@@ -94,6 +101,87 @@ class InstallFinisher
         $this->log[] = 'Locked the installer (storage/installed.lock)';
 
         return $this->log;
+    }
+
+    /**
+     * Create a published "Home" page linked to the site root, with a
+     * rich-text block when that module is installed. Does nothing if the
+     * site already has a home page.
+     *
+     * @param string $site_name
+     * @return bool Whether a page was created
+     */
+    public function createStarterHomePage(string $site_name): bool
+    {
+        if (!Schema::hasTable('pages') || !Schema::hasTable('urls')) {
+            return false;
+        }
+
+        $route = 'controller=home&method=index';
+        if (DB::table('urls')->where('system_page', 1)->where('route', $route)->exists()) {
+            return false;
+        }
+
+        $language_id = (int) (DB::table('languages')->orderBy('id')->value('id') ?? 1);
+        $page_id = (int) DB::table('pages')->max('page_id') + 1;
+        $now = now();
+        $page_class = \Modules\Pages\Models\Page::class;
+
+        DB::table('pages')->insert([
+            'page_id'     => $page_id,
+            'language_id' => $language_id,
+            'version'     => 1,
+            'title'       => 'Home',
+            'h1_title'    => $site_name,
+            'status'      => 1,
+            'created_at'  => $now,
+            'updated_at'  => $now,
+        ]);
+
+        DB::table('urls')->insert([
+            'url'              => '',
+            'urlable_id'       => $page_id,
+            'urlable_type'     => $page_class,
+            'language_id'      => $language_id,
+            'meta_title'       => $site_name,
+            'meta_description' => null,
+            'no_index'         => 0,
+            'system_page'      => 1,
+            'route'            => $route,
+            'created_at'       => $now,
+            'updated_at'       => $now,
+        ]);
+
+        // Starter content, editable in the page builder
+        $wysiwyg = \Modules\WysiwygBlock\Blocks\Wysiwyg::class;
+        if ($this->Modules->isEnabled('WysiwygBlock') && class_exists($wysiwyg)) {
+            $block_id = DB::table('page_builder_blocks')->insertGetId([
+                'morphable_id'    => $page_id,
+                'morphable_type'  => $page_class,
+                'morphable_field' => 'page_builder',
+                'language_id'     => $language_id,
+                'version'         => 1,
+                'block_class'     => $wysiwyg,
+                'sort_order'      => 0,
+                'status'          => 1,
+                'created_at'      => $now,
+                'updated_at'      => $now,
+            ]);
+            foreach ([
+                'heading' => 'Welcome to ' . $site_name,
+                'content' => '<p>This is your new site\'s starter home page. Sign in to the CMS and edit the Home page to build it with blocks.</p>',
+            ] as $field => $value) {
+                DB::table('page_builder_block_contents')->insert([
+                    'page_builder_block_id' => $block_id,
+                    'field'                 => $field,
+                    'value'                 => $value,
+                    'created_at'            => $now,
+                    'updated_at'            => $now,
+                ]);
+            }
+        }
+
+        return true;
     }
 
     /**

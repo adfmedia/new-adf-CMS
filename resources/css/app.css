@@ -26,8 +26,14 @@
     --color-gray-900:   oklch(.21 .03 264.68);  /* #111827; */
     --color-gray-950:   oklch(.13 .04 264.7);   /* #020617; */
 
-    --color-primary:    oklch(.3 .08 249.46);   /* #003057; */
-    --color-secondary:  oklch(.6 .23 3.69);     /* #e61b72; */
+    /* adfmedia palette (as on adfmedia.net) */
+    --color-primary:    #0a0a0a;    /* adf ink */
+    --color-secondary:  #9c1006;    /* adf red */
+    --color-adf-ink:     #0a0a0a;
+    --color-adf-surface: #141414;
+    --color-adf-line:    #262626;
+    --color-adf-paper:   #f7f5f2;
+    --color-adf-red:     #9c1006;
     --color-success:    oklch(.78 .16 166.56);  /* #06d6a0; */
     --color-danger:     oklch(.65 .2 11.07);    /* #ef476f; */
     --color-warning:    oklch(.88 .13 86.04);   /* #ffd166; */

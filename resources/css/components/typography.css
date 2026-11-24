@@ -127,27 +127,27 @@
     }
 
     .icon-facebook {
-        @apply text-[#4267B2] hover:text-[#003057];
+        @apply text-[#4267B2] hover:text-primary;
     }
 
     .icon-twitter {
-        @apply text-[#00aced] hover:text-[#003057];
+        @apply text-[#00aced] hover:text-primary;
     }
 
     .icon-twitterx {
-        @apply text-[#000000] hover:text-[#003057];
+        @apply text-[#000000] hover:text-primary;
     }
 
     .icon-youtube {
-        @apply text-[#bb0000] hover:text-[#003057];
+        @apply text-[#bb0000] hover:text-primary;
     }
 
     .icon-linkedin {
-        @apply text-[#007bb6] hover:text-[#003057];
+        @apply text-[#007bb6] hover:text-primary;
     }
 
     .icon-whatsapp {
-        @apply text-[#075e54] hover:text-[#003057];
+        @apply text-[#075e54] hover:text-primary;
     }
     /* END Share icons */
 }
