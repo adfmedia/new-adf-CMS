@@ -18,10 +18,20 @@ Route::middleware('guest')->group(function () {
     $forgot_slug = 'forgot-password';
     $reset_slug = 'reset-password';
 
-    $RegisterPage = Url::getSystemPage('auth', 'register');
-    $LoginPage = Url::getSystemPage('auth', 'login');
-    $ForgotPage = Url::getSystemPage('auth', 'forgot_password');
-    $ResetPage = Url::getSystemPage('auth', 'reset_password');
+    // Page lookups are optional: before install (no database yet) the
+    // default slugs are used, so the app can still boot for the installer
+    $systemPage = function (string $method) {
+        try {
+            return Url::getSystemPage('auth', $method);
+        } catch (\Throwable $e) {
+            return null;
+        }
+    };
+
+    $RegisterPage = $systemPage('register');
+    $LoginPage = $systemPage('login');
+    $ForgotPage = $systemPage('forgot_password');
+    $ResetPage = $systemPage('reset_password');
 
     if ($RegisterPage) { $register_slug = $RegisterPage->url_slug; }
     if ($LoginPage) { $login_slug = $LoginPage->url_slug; }

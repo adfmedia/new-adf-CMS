@@ -24,18 +24,28 @@ class DatabaseSeeder extends Seeder
         //    'email' => 'test@example.com',
         //]);
 
-        $SuperAdminGroup = \Adm\Models\AdmUserGroup::create([
-            'title'         => 'Super admin',
-            'permissions'   => [],
-            'super_admin'   => true,
-            'active'        => true
-        ]);
+        $SuperAdminGroup = \Adm\Models\AdmUserGroup::firstOrCreate(
+            ['title' => 'Super admin'],
+            [
+                'permissions'   => [],
+                'super_admin'   => true,
+                'active'        => true
+            ]
+        );
 
-        \Adm\Models\AdmUser::create([
-            'name'              => 'adfmedia',
-            'email'             => 'info@adfmedia.net',
-            'password'          => Hash::make('!Staff0nly!'),
-            'adm_user_group_id' => $SuperAdminGroup->id
-        ]);
+        // No admin with a fixed password any more: the installer (or
+        // php artisan cms:admin:create) asks for one. For a local dev
+        // database, set SEED_ADMIN_EMAIL and SEED_ADMIN_PASSWORD in .env
+        // to have db:seed create one.
+        $email = env('SEED_ADMIN_EMAIL');
+        $password = env('SEED_ADMIN_PASSWORD');
+        if ($email && $password && !\Adm\Models\AdmUser::where('email', $email)->exists()) {
+            \Adm\Models\AdmUser::create([
+                'name'              => env('SEED_ADMIN_NAME', 'adfmedia'),
+                'email'             => $email,
+                'password'          => Hash::make($password),
+                'adm_user_group_id' => $SuperAdminGroup->id
+            ]);
+        }
     }
 }

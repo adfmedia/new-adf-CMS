@@ -65,7 +65,15 @@ $app->detectEnvironment(function () {
         $dotenv = Dotenv::createImmutable(dirname(dirname(__FILE__)) . '/', '.env' . (!empty($my_env) ? '.' . $my_env : ''));
         $dotenv->load();
     } else {
-        die('The app environment is not configured correctly.');
+        // No .env yet: this is a new site. The command line carries on so
+        // php artisan cms:install can run; a browser goes to the installer.
+        if (PHP_SAPI !== 'cli') {
+            if (is_file(dirname(__DIR__) . '/public/install/index.php')) {
+                header('Location: /install/', true, 302);
+                exit;
+            }
+            die('The app environment is not configured correctly.');
+        }
     }
 });
 
