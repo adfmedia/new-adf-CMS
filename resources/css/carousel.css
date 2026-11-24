@@ -1,0 +1,19 @@
+@import "swiper/css" layer(components);
+@import "swiper/css/navigation" layer(components);
+@import "swiper/css/pagination" layer(components);
+
+@layer components {
+    .swiper-initialized .swiper-slide.swiper-hidden {
+        display: block;
+
+        &.flex {
+            display: flex;
+        }
+    }
+    
+    .testimonials-carousel {
+        .swiper-slide {
+            @apply h-auto;
+        }
+    }
+}

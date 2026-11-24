@@ -1,0 +1,1 @@
+{{ html()->textarea($field_name)->attributes(['class' => 'input', 'id' => uniqid(), 'data-wysiwyg' => true]) }}

@@ -1,0 +1,39 @@
+@layer components {
+    .accordion-wrap {
+        @apply space-y-6 divide-y divide-gray-200;
+
+        .accordion-item {
+            .item-heading {
+                @apply flex w-full items-start justify-between bg-white p-2 transition-colors;
+
+                .item-title {
+                    @apply text-base font-semibold leading-7;
+                }
+                .toggle-icon {
+                    @apply w-6 h-6 transition-transform;
+                }
+
+                &:hover,
+                &:focus {
+                    @apply bg-gray-200;
+                }
+            }
+
+            .item-content {
+                @apply p-2 h-full max-h-0 overflow-hidden transition-all;
+            }
+
+            &.open {
+                .item-heading {
+                    .toggle-icon {
+                        @apply rotate-180;
+                    }
+                }
+                .item-content {
+                    @apply max-h-none;
+                }
+            }
+        }
+    }
+
+}

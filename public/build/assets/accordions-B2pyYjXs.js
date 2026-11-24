@@ -1,0 +1,1 @@
+function e(e){e.forEach(e=>{e.querySelectorAll(`[data-accordion-item]`).forEach(e=>{let t=e.querySelector(`[data-item-toggle]`);t&&(t.onclick=t=>{t.preventDefault(),e.classList.toggle(`open`)})})})}export{e as bindAccordions};

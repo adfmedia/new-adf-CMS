@@ -1,0 +1,21 @@
+@layer components {
+    .btn {
+        @apply cursor-pointer rounded-md bg-primary py-2 px-3 text-sm font-semibold text-white transition-all hover:bg-secondary;
+
+        &.btn--secondary {
+            @apply bg-secondary hover:bg-primary;
+        }
+
+        &.btn--black {
+            @apply bg-gray-800 hover:bg-gray-900 focus-visible:outline-gray-800;
+        }
+
+        &.btn--red {
+            @apply bg-red-600 hover:bg-red-700 focus-visible:outline-red-700;
+        }
+
+        &.btn--green {
+            @apply bg-green-600 hover:bg-green-700 focus-visible:outline-green-700;
+        }
+    }
+}

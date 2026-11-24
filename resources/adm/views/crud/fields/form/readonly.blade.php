@@ -1,0 +1,1 @@
+{{ html()->text($field_name)->attributes(['class' => 'input readonly', 'id' => $field_name, 'readonly' => 'readonly']) }}

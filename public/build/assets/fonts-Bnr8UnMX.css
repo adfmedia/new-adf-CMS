@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url("/build/assets/figtree-100-1000-normal-DIPMzkkf.woff2") format("woff2"),
+    url("/build/assets/figtree-100-1000-normal-CkXbWBDP.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: italic;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url("/build/assets/figtree-100-1000-italic-BCqpA0it.woff2") format("woff2"),
+    url("/build/assets/figtree-100-1000-italic-COvEadCN.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/build/assets/inter-100-900-normal-j6BbcsN8.woff2") format("woff2");
+}
+
+:root {
+  --font-figtree: "Figtree";
+  --font-inter: "Inter";
+}
+
+.font-figtree {
+  font-family: var(--font-figtree);
+}
+
+.font-inter {
+  font-family: var(--font-inter);
+}

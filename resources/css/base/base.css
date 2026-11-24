@@ -1,0 +1,13 @@
+@layer base {
+    body {
+        @apply min-h-dvh;
+    }
+
+    .swiper-slide.swiper-hidden {
+        @apply hidden;
+    }
+
+    select {
+        @apply appearance-none indent-px;
+    }
+}

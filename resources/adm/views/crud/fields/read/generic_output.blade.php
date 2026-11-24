@@ -1,0 +1,1 @@
+{!! data_get($Item, $field_name) !!}

@@ -1,0 +1,1 @@
+function e(e){}function t(e){for(let t of e)for(let e of t.querySelectorAll(`[data-modal-close]`))e.onclick=e=>{e.preventDefault(),t.classList.remove(`open`)}}export{t as bindInnerModalEvents,e as bindModalToggles};

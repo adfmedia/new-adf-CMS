@@ -1,0 +1,118 @@
+.menu-structure {
+    @apply min-h-[40rem] space-y-2;
+
+    .sortable-ghost {
+        @apply max-w-md relative z-10;
+    }
+
+    .menu-structure-item {
+        .structure-link-wrap {
+            @apply max-w-md border border-gray-300;
+
+            .link-header {
+                @apply flex items-stretch bg-white;
+
+                .handle {
+                    @apply w-10 inline-flex items-center justify-center;
+
+                    .handle-icon {
+                        @apply w-4 h-4 cursor-grab rotate-45;
+                    }
+                }
+                .title {
+                    @apply px-4 py-2 flex-1 inline-flex items-center border-x border-gray-300;
+                }
+                .dd-toggle {
+                    @apply w-10 inline-flex items-center justify-center cursor-pointer;
+
+                    .toggle-icon {
+                        @apply w-4 h-4;
+                    }
+                }
+                .collapse-toggle {
+                    @apply w-10 inline-flex items-center justify-center cursor-pointer border-r border-gray-300;
+                    
+                    .toggle-icon {
+                        @apply w-4 h-4;
+                    }
+                }
+            }
+
+            .link-options {
+                @apply hidden py-2 px-3 bg-white border-t border-gray-300 divide-y divide-gray-200 space-y-3;
+
+                > .field-wrap {
+                    @apply pt-0 pb-3;
+                }
+            }
+
+            .advanced-wrap {
+                @apply border-x border-t border-gray-200;
+
+                .advanced-header {
+                    @apply flex items-stretch justify-between border-b border-gray-200;
+
+                    .advanced-dd-toggle {
+                        @apply w-10 inline-flex items-center justify-center cursor-pointer border-l border-gray-200;
+                        
+                        .toggle-icon {
+                            @apply w-4 h-4;
+                        }
+                    }
+                }
+                .advanced-inner {
+                    @apply hidden p-2 border-b border-gray-200;
+                }
+
+                &.expanded {
+                    .advanced-header .advanced-dd-toggle .toggle-icon {
+                        @apply rotate-180;
+                    }
+
+                    .advanced-inner {
+                        @apply block;
+                    }
+                }
+            }
+
+            &.expanded {
+                /*
+                .link-header .dd-toggle .toggle-icon {
+                    @apply rotate-180;
+                }
+                */
+
+                .link-options {
+                    @apply block;
+                }
+            }
+
+            &.collapsed {
+                .link-header .collapse-toggle .toggle-icon {
+                    @apply rotate-180;
+                }
+
+                + .link-child-wrap {
+                    @apply hidden;
+                }
+            }
+        }
+
+        .link-child-wrap {
+            @apply pl-6;
+
+            .link-children {
+                @apply space-y-2 p-2 outline-1 outline-dashed outline-gray-300 max-w-[29rem] mt-2;
+
+                &:not(:has(.menu-structure-item)) {
+                    @apply h-14 relative bg-gray-300/25;
+                    
+                    &:before {
+                        content: "Drop a link here to create a dropdown menu";
+                        @apply absolute inset-0 flex items-center p-2 text-sm italic;
+                    }
+                }
+            }
+        }
+    }
+}

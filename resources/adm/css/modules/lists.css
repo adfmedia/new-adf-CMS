@@ -1,0 +1,101 @@
+.listing-table {
+    .listing-image-wrapper {
+        @apply w-[130px] h-[75px];
+
+        > img {
+            @apply w-full h-full object-contain;
+        }
+    }
+
+    .sortable-col {
+        @apply inline-flex items-center;
+
+        .sortable-icon {
+            @apply flex flex-col items-center justify-center ml-2;
+
+            &:before,
+            &:after {
+                content: '';
+                @apply w-0 h-0 border-solid opacity-10 transition-all;
+            }
+            &:before {
+                border-width: 0 4px 6px;
+                border-color: transparent transparent black;
+                margin-bottom: 2px;
+            }
+            &:after {
+                border-width: 6px 4px 0;
+                border-color: black transparent transparent;
+            }
+        }
+
+        &:hover {
+            .sortable-icon:before {
+                @apply opacity-75;
+            }
+        }
+
+        &.sorted-asc {
+            .sortable-icon:before {
+                @apply opacity-75;
+            }
+
+            &:hover {
+                .sortable-icon:before {
+                    @apply opacity-10;
+                }
+                .sortable-icon:after {
+                    @apply opacity-75;
+                }
+            }
+        }
+        &.sorted-desc {
+            .sortable-icon:after {
+                @apply opacity-75;
+            }
+
+            &:hover {
+                .sortable-icon:before {
+                    @apply opacity-75;
+                }
+                .sortable-icon:after {
+                    @apply opacity-10;
+                }
+            }
+        }
+    }
+
+    .translate-wrap {
+        @apply relative mr-4;
+
+        .toggle-btn {
+            @apply cursor-pointer rounded-md bg-primary-medium py-2 px-3 text-sm font-semibold text-white transition-all hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-medium inline-flex items-center justify-between;
+
+            .toggle-text {
+                @apply pr-2 border-r mr-2
+            }
+
+            .toggle-icon {
+                @apply h-5 w-5;
+            }
+        }
+
+        .toggle-dropdown {
+            @apply absolute right-0 z-10 -mr-1 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden transition-all transform opacity-0 scale-95 invisible;
+
+            .dropdown-link {
+                @apply text-gray-700 block px-4 py-2 text-sm;
+            }
+        }
+
+        &.open {
+            .toggle-btn .toggle-icon {
+                @apply rotate-180;
+            }
+
+            .toggle-dropdown {
+                @apply opacity-100 scale-100 visible;
+            }
+        }
+    }
+}

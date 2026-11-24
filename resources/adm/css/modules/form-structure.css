@@ -1,0 +1,99 @@
+.form-structure {
+    @apply w-full flex flex-col;
+
+    .structure-row {
+        @apply relative w-full p-2 pt-6 mb-4 border border-dashed border-gray-300;
+
+        .row-columns {
+            @apply flex items-stretch space-x-4;
+        }
+    }
+
+    .structure-col {
+        @apply relative w-full px-2 pb-2 pt-6 border border-dotted border-gray-300;
+
+        .col-fields {
+            @apply h-full;
+        }
+    }
+
+    .structure-field {
+        @apply mb-2 border border-gray-300;
+
+        .field-header {
+            @apply flex items-stretch bg-white;
+
+            .handle {
+                @apply w-10 inline-flex items-center justify-center;
+
+                .handle-icon {
+                    @apply w-4 h-4 cursor-grab rotate-45;
+                }
+            }
+            .title {
+                @apply px-4 py-2 flex-1 inline-flex items-center border-x border-gray-300;
+
+                .field-label {
+                    @apply text-sm mr-1;
+                }
+                .field-type {
+                    @apply text-sm italic;
+                }
+            }
+            .toggle-btn {
+                @apply w-10 inline-flex items-center justify-center cursor-pointer;
+
+                .toggle-icon {
+                    @apply w-4 h-4;
+                }
+            }
+        }
+
+        .field-inner {
+            @apply hidden p-4 pt-0 border-t border-gray-300 divide-y divide-gray-200 space-y-3;
+
+            .field-options {
+                @apply hidden;
+            }
+            .field-settings {
+                @apply pt-3;
+            }
+        }
+
+        &.expanded {
+            .field-header {
+                .toggle-icon {
+                    @apply rotate-180;
+                }
+            }
+
+            .field-inner {
+                @apply block;
+            }
+        }
+    }
+
+    .move-handle {
+        @apply absolute top-0 left-0 w-4 h-4 p-0.5 cursor-grab;
+
+        svg {
+            @apply rotate-45;
+        }
+    }
+
+    .actions-wrap {
+        @apply absolute top-0 right-0 pr-1 flex items-center;
+
+        .act-link {
+            @apply text-xs ml-1;
+
+            &.remove-row,
+            &.remove-col {
+                @apply text-red-600;
+            }
+            &.add-col {
+                @apply text-primary-medium;
+            }
+        }
+    }
+}

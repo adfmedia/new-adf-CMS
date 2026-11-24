@@ -1,0 +1,1 @@
+<div class="">{!! data_get($Item, $field_name) !!}</div>

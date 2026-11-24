@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/wysiwyg-config-43-S7-50.js","assets/rolldown-runtime-XKyaHtl9.js"])))=>i.map(i=>d[i]);
+import{t as e}from"./preload-helper-odF-skvc.js";window.addEventListener(`load`,()=>{e(async()=>{let{bindTinymce:e}=await import(`./wysiwyg-config-43-S7-50.js`);return{bindTinymce:e}},__vite__mapDeps([0,1])).then(({bindTinymce:e})=>{e()})});

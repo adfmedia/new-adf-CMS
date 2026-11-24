@@ -1,0 +1,263 @@
+@layer components {
+    .placeholder-input {
+        @apply form-input relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-primary-medium sm:text-sm sm:leading-6;
+    }
+
+    .field-wrap {
+        @apply pb-3;
+
+        .label {
+            @apply block text-sm font-medium leading-6 text-gray-900;
+        }
+        .help-text {
+            @apply block text-xs text-gray-500 mt-1;
+        }
+        .input-wrap {
+            @apply mt-2;
+
+            .input {
+                @apply block w-full rounded-md border-0 py-2 text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-medium sm:text-sm sm:leading-6;
+
+                &.readonly {
+                    @apply bg-gray-100 cursor-default;
+                }
+
+                &[data-colour-picker] {
+                    @apply max-w-[200px];
+                }
+            }
+
+            .clr-field { /* Colour Picker */
+                button {
+                    @apply rounded-r-md;
+                }
+            }
+
+            .toggle {
+                @apply bg-gray-200 relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2;
+
+                .active-toggle {
+                    @apply text-green-500;
+                }
+
+                &[aria-checked="true"] {
+                    @apply bg-green-500;
+                }
+            }
+
+            .input.with-addon-button {
+                @apply rounded-r-none;
+            }
+            .input.with-price-prefix {
+                @apply pl-7;
+            }
+            .addon-button {
+                @apply relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50;
+
+                svg {
+                    @apply -ml-0.5 h-5 w-5 text-gray-400;
+                }
+
+                &.no-rounding {
+                    @apply rounded-none;
+                }
+            }
+
+            &.mt-0 {
+                margin-top: 0;
+            }
+        }
+    }
+
+    .seo-meta-preview {
+        .favicon-site-url {
+            @apply flex items-center mb-1 h-[38px];
+
+            .favicon {
+                @apply w-6 h-6 mr-3 inline-flex items-center justify-center bg-gray-400 border border-gray-200 rounded-full;
+
+                > img {
+                    @apply rounded-full;
+                }
+            }
+            .site-url {
+                .site {
+                    @apply text-sm leading-none max-w-[200px];
+                }
+                .url {
+                    @apply text-gray-500 flex items-center gap-x-px text-sm leading-tight max-w-[315px] overflow-hidden text-ellipsis whitespace-nowrap;
+
+                    .prefix {
+                        @apply flex items-center gap-x-px;
+                    }
+                }
+            }
+        }
+        .meta-title {
+            @apply text-xl mb-1 text-[#1a0dab] h-[28px];
+        }
+        .meta-description {
+            
+        }
+    }
+
+    .image-size-wrap {
+        @apply flex flex-wrap items-stretch -mx-2;
+
+        .size-tile {
+            @apply px-2 mb-2 mr-4;
+
+            .title-details {
+                .title {
+                    @apply text-xs font-semibold;
+                }
+                .dims {
+                    @apply text-xs;
+                }
+            }
+            .image-wrap {
+                @apply block rounded-lg w-[130px] h-[130px] my-2 border border-gray-300 relative transition-colors;
+
+                .image-placeholder,
+                .image-preview {
+                    @apply absolute inset-0;
+
+                    &.hidden {
+                        display: none;
+                    }
+                }
+                .image-placeholder {
+                    @apply flex flex-col justify-center items-center;
+
+                    .placeholder-icon {
+                        @apply w-8 h-8 mb-2;
+                    }
+                    .placeholder-text {
+                        @apply text-xs text-center;
+                    }
+                }
+                .image-preview {
+                    @apply flex items-center justify-center rounded-lg overflow-hidden;
+                }
+
+                &:hover {
+                    @apply bg-gray-100 text-gray-700;
+                }
+            }
+            .actions-wrap {
+                @apply flex items-center justify-between text-xs;
+
+                .edit-action {
+                    @apply text-primary-medium hover:underline;
+                }
+                .remove-action {
+                    @apply text-red-600 hover:underline;
+                }
+            }
+        }
+    }
+
+    .orderable-select {
+        @apply flex items-stretch h-60;
+
+        .options-col {
+            @apply h-full w-1/2 flex flex-col border border-gray-300;
+
+            .options-list-heading {
+                @apply text-sm font-semibold p-[0.87rem] bg-gray-100 border-b border-gray-300;
+
+                &.has-move-all {
+                    @apply flex items-center justify-between p-2;
+
+                    .move-all-btn {
+                        @apply cursor-pointer rounded-md bg-neutral-200 py-2 px-3 text-xs text-neutral-600 transition-all hover:bg-neutral-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-medium;
+                    }
+                }
+
+                &.search {
+                    @apply p-1;
+
+                    .input {
+                        @apply w-full max-w-xs px-2;
+                    }
+                }
+            }
+
+            .options-list {
+                @apply flex-1 overflow-y-auto overflow-x-hidden;
+
+                .option {
+                    @apply flex items-center py-1 px-2 border-b border-gray-300 cursor-move transition-colors;
+
+                    .label {
+                        @apply flex-1 flex items-center justify-between;
+
+                        &::after {
+                            content: '';
+                            /* Right arrow */
+                            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75' /%3E%3C/svg%3E%0A");
+                            @apply mr-2 w-4 h-4 bg-contain bg-center;
+                        }
+                    }
+
+                    &:hover {
+                        @apply bg-gray-100;
+                    }
+
+                    &.hidden {
+                        display: none;
+                    }
+                }
+
+                &.selected {
+                    .option {
+                        @apply cursor-n-resize;
+
+                        &::before {
+                            content: '';
+                            /* Left arrow */
+                            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75' /%3E%3C/svg%3E%0A");
+                            @apply mr-2 w-4 h-4 bg-contain bg-center;
+                        }
+
+                        .label::after {
+                            /* Arrows up & down */
+                            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5' /%3E%3C/svg%3E%0A");
+                        }
+
+                    }
+                }
+            }
+
+            &:first-child {
+                @apply border-r-0;
+            }
+        }
+    }
+
+    .search-field-wrap {
+        @apply relative;
+
+        .search-input {
+            @apply py-1 px-2 pr-7 text-sm leading-6 rounded-md border-gray-300 focus:border-primary-medium transition-colors;
+        }
+
+        .search-btn {
+            @apply absolute right-2 top-2 mt-px;
+
+            .search-icon {
+                @apply w-4 h-4 text-primary-medium hover:text-primary-dark transition-colors;
+            }
+        }
+    }
+
+    .visual-editor-sidebar {
+        .image-size-wrap {
+            .size-tile {
+                .image-wrap {
+                    @apply size-28;
+                }
+            }
+        }
+    }
+}

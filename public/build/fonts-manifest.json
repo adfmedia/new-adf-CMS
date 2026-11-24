@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "style": {
+    "file": "assets/fonts-Bnr8UnMX.css",
+    "familyStyles": {
+      "figtree": "@font-face {\n  font-family: \"Figtree\";\n  font-style: normal;\n  font-weight: 100 1000;\n  font-display: swap;\n  src: url(\"/build/assets/figtree-100-1000-normal-DIPMzkkf.woff2\") format(\"woff2\"),\n    url(\"/build/assets/figtree-100-1000-normal-CkXbWBDP.ttf\") format(\"truetype\");\n}\n\n@font-face {\n  font-family: \"Figtree\";\n  font-style: italic;\n  font-weight: 100 1000;\n  font-display: swap;\n  src: url(\"/build/assets/figtree-100-1000-italic-BCqpA0it.woff2\") format(\"woff2\"),\n    url(\"/build/assets/figtree-100-1000-italic-COvEadCN.ttf\") format(\"truetype\");\n}\n\n.font-figtree {\n  font-family: var(--font-figtree);\n}",
+      "inter": "@font-face {\n  font-family: \"Inter\";\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(\"/build/assets/inter-100-900-normal-j6BbcsN8.woff2\") format(\"woff2\");\n}\n\n.font-inter {\n  font-family: var(--font-inter);\n}"
+    },
+    "variables": {
+      "figtree": "--font-figtree: \"Figtree\";",
+      "inter": "--font-inter: \"Inter\";"
+    }
+  },
+  "preloads": [
+    {
+      "alias": "figtree",
+      "family": "Figtree",
+      "weight": "100 1000",
+      "style": "normal",
+      "file": "assets/figtree-100-1000-normal-DIPMzkkf.woff2",
+      "as": "font",
+      "type": "font/woff2",
+      "crossorigin": "anonymous"
+    },
+    {
+      "alias": "figtree",
+      "family": "Figtree",
+      "weight": "100 1000",
+      "style": "italic",
+      "file": "assets/figtree-100-1000-italic-BCqpA0it.woff2",
+      "as": "font",
+      "type": "font/woff2",
+      "crossorigin": "anonymous"
+    },
+    {
+      "alias": "inter",
+      "family": "Inter",
+      "weight": "100 900",
+      "style": "normal",
+      "file": "assets/inter-100-900-normal-j6BbcsN8.woff2",
+      "as": "font",
+      "type": "font/woff2",
+      "crossorigin": "anonymous"
+    }
+  ],
+  "families": {
+    "figtree": {
+      "family": "Figtree",
+      "variable": "--font-figtree",
+      "variants": {
+        "100 1000:normal": {
+          "files": [
+            {
+              "file": "assets/figtree-100-1000-normal-DIPMzkkf.woff2",
+              "format": "woff2"
+            },
+            {
+              "file": "assets/figtree-100-1000-normal-CkXbWBDP.ttf",
+              "format": "ttf"
+            }
+          ]
+        },
+        "100 1000:italic": {
+          "files": [
+            {
+              "file": "assets/figtree-100-1000-italic-BCqpA0it.woff2",
+              "format": "woff2"
+            },
+            {
+              "file": "assets/figtree-100-1000-italic-COvEadCN.ttf",
+              "format": "ttf"
+            }
+          ]
+        }
+      }
+    },
+    "inter": {
+      "family": "Inter",
+      "variable": "--font-inter",
+      "variants": {
+        "100 900:normal": {
+          "files": [
+            {
+              "file": "assets/inter-100-900-normal-j6BbcsN8.woff2",
+              "format": "woff2"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

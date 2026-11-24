@@ -1,0 +1,87 @@
+@layer project {
+    .modal-wrap {
+        @apply hidden;
+
+        .modal-bg {
+            @apply fixed inset-0 bg-gray-500/75 opacity-0 transition-opacity z-[99];
+        }
+
+        .modal-position {
+            @apply fixed inset-0 z-[100] overflow-y-auto;
+        }
+
+        .modal-inner-wrap {
+            @apply flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0;
+        }
+
+        .modal-inner {
+            @apply relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6;
+            @apply opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95;
+
+            .close-wrap {
+                @apply absolute right-0 top-0 hidden pr-4 pt-4 sm:block z-10;
+
+                .close-btn {
+                    @apply rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-primary-medium focus:ring-offset-2;
+
+                    .close-icon {
+                        @apply h-6 w-6;
+                    }
+                }
+            }
+
+            &.view-file {
+                @apply w-[70rem] max-w-[100vw] p-0 pb-6;
+            }
+
+            &.image-picker {
+                @apply w-full max-w-[75vw] p-0 h-[45rem];
+                max-height: calc(100vh - 4rem); /* h-screen minus margin */
+
+                > div {
+                    height: calc(100% - 4.25rem);
+                }
+            }
+
+            &.page-builder {
+                @apply w-full max-w-[75vw] p-0 h-[45rem];
+                max-height: calc(100vh - 4rem); /* h-screen minus margin */
+
+                > div:not(.close-wrap) {
+                    @apply h-full;
+                }
+            }
+
+            &.link-picker {
+                @apply max-w-[45rem];
+            }
+        }
+
+        &.open {
+            @apply block;
+
+            .modal-bg {
+                @apply opacity-100;
+            }
+            .modal-inner {
+                @apply opacity-100 translate-y-0 sm:scale-100;
+            }
+        }
+
+        &.wysiwyg-opened {
+            @apply relative z-[9999];
+        }
+    }
+
+    .image-crop-wrap {
+        @apply relative mx-auto h-full max-h-[95%];
+
+        .preview-image {
+            @apply w-auto h-auto max-w-[1000px] max-h-[450px];
+        }
+
+        cropper-canvas {
+            @apply w-full h-full;
+        }
+    }
+}

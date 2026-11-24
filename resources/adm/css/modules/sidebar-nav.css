@@ -1,0 +1,34 @@
+@layer components {
+    .sidebar-nav {
+        @apply z-30 w-0 lg:w-64 max-h-dvh lg:max-h-none fixed inset-y-0 flex flex-col transition-all;
+
+        .nav-toggle {
+            @apply absolute top-2.5 left-full size-10 bg-gray-900 text-white rounded-r-md flex items-center justify-center lg:hidden;
+
+            .nav-toggle-input {
+                @apply hidden;
+            }
+            .toggle-icon {
+                @apply size-6;
+            }
+        }
+
+        + .nav-offset {
+            @apply lg:pl-64;
+        }
+
+        &:has(.nav-toggle-input:checked) {
+            @apply w-64 lg:w-0;
+
+            .nav-toggle {
+                .toggle-icon {
+                    @apply rotate-180;
+                }
+            }
+
+            + .nav-offset {
+                @apply pl-0;
+            }
+        }
+    }
+}

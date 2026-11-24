@@ -1,0 +1,1 @@
+@include('page-builder.wrapper', ['Blocks' => $CommonBlocks])

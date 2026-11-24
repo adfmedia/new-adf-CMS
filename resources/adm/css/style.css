@@ -1,0 +1,43 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+@theme {
+    /* Colours */
+    --color-primary-light: var(--color-sky-100);
+    --color-primary-accent: var(--color-sky-400);
+    --color-primary-medium: var(--color-sky-600);
+    --color-primary-dark: var(--color-sky-800);
+
+    /* Fonts */
+    --font-sans: 'Inter', sans-serif;
+
+    /* Custom widths */
+    --spacing-preview-mobile: 375px;
+    --spacing-preview-tablet: 768px;
+    --spacing-preview-laptop: 1280px;
+}
+
+@utility container {
+    margin-inline: auto;
+    padding-inline: 1rem;
+}
+
+/* Project imports */
+@import './base/base';
+
+@import './modules/buttons';
+@import './modules/file-manager';
+@import './modules/flash';
+@import './modules/form-structure';
+@import './modules/forms';
+@import './modules/lists';
+@import './modules/menu-builder';
+@import './modules/modals';
+@import './modules/page-builder';
+@import './modules/sidebar-nav';
+@import './modules/tooltips';
+
+/* Source file detection */
+@source '../../../resources/adm/views';
+@source '../../../resources/adm/js';

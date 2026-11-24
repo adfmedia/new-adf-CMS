@@ -1,0 +1,340 @@
+.file-manager {
+    &[data-file-manager="full"] {
+        @apply h-[50rem] max-h-[85vh];
+    }
+
+    .fm-sidebar-wrap {
+        @apply w-1/5 bg-gray-100 border-r border-gray-300 p-4 rounded-l-md flex flex-col;
+
+        .folder-list {
+            @apply flex-1 mb-4 overflow-y-auto;
+
+            .folder-link {
+                @apply inline-block py-px px-1;
+
+                &.dragover {
+                    @apply bg-gray-400;
+                }
+            }
+        }
+
+        .bottom-actions {
+            @apply border-t border-gray-300 pt-4;
+        }
+    }
+
+    .fm-files-wrap {
+        @apply w-4/5 p-4 rounded-r-md h-full relative;
+
+        .top-actions {
+            @apply pb-2 mb-2 border-b border-gray-300 flex items-center justify-between;
+
+            .fm-heading {
+                @apply text-lg w-3/4;
+            }
+            .actions-wrap {
+                @apply flex items-center justify-end;
+            }
+        }
+
+        .inner-wrap {
+            @apply relative z-10 h-full flex flex-col;
+        }
+
+        .files-list {
+            @apply grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-x-2 gap-y-4 -mx-2 pb-4 overflow-y-auto;
+
+            /* Custom scrollbar */
+            &::-webkit-scrollbar {
+                @apply w-2;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                @apply bg-gray-400 border-2 border-gray-300 rounded-full;
+            }
+
+            &::-webkit-scrollbar-track {
+                @apply bg-gray-300 rounded-full;
+            }
+        }
+
+        .list-drag-drop {
+            @apply absolute inset-0 bg-primary-light flex flex-col items-center justify-center p-8 border-2 border-dashed border-primary-medium rounded-r-lg opacity-0 z-0 transition-opacity;
+
+            .dd-placeholder {
+                @apply flex flex-col items-center text-gray-400 text-xl pointer-events-none;
+
+                .dd-icon {
+                    @apply w-24 h-24 mb-8;
+                }
+            }
+
+            &:hover {
+                @apply bg-primary-light;
+            }
+        }
+        &.is-dragover {
+            .list-drag-drop {
+                @apply opacity-100 z-50;
+            }
+        }
+    }
+
+    .expander {
+        @apply absolute left-0 top-1 w-4 h-4 text-xs flex items-center justify-center -rotate-90;
+
+        &.open {
+            @apply rotate-0;
+        }
+    }
+
+    .listing-tile {
+        @apply flex justify-center;
+
+        .tile-link {
+            @apply inline-flex flex-col items-center justify-center w-48 h-32 px-4 bg-white border border-gray-50 rounded-md shadow-lg transition-all;
+
+            &:hover, &:focus {
+                @apply bg-gray-50 border-gray-50 shadow-xl;
+            }
+
+            .tile-icon {
+                @apply w-12 h-12 mb-2;
+            }
+
+            .tile-title {
+                @apply font-medium text-sm;
+                word-break: break-word;
+            }
+
+            &:hover, &:focus {
+                @apply text-primary-medium;
+            }
+        }
+
+        &.folder {
+            .tile-link {
+                @apply flex-row justify-start h-12 bg-gray-100 border-gray-100;
+
+                .tile-icon {
+                    @apply w-6 h-6 mb-0 mr-2;
+                }
+
+                &:hover, &:focus {
+                    @apply bg-gray-200 border-gray-200;
+                }
+
+                &.dragover {
+                    @apply bg-gray-300 border-gray-400 border-dashed border-2;
+                }
+            }
+        }
+
+        &.file {
+            .tile-link {
+                @apply justify-start h-44 py-2;
+
+                .tile-image-wrap {
+                    @apply w-[100px] h-[90px] mb-2 inline-flex items-center justify-center;
+
+                    .tile-image {
+                        @apply max-w-full max-h-full;
+                    }
+                }
+
+                .tile-title {
+                @apply line-clamp-3;
+                }
+            }
+        }
+
+        &.is-new {
+            .tile-link {
+                @apply bg-primary-light border-primary-medium shadow-primary-light;
+            }
+        }
+    }
+}
+
+.upload-files-wrap {
+    @apply bg-primary-light relative flex flex-col items-center justify-center py-8;
+
+    .uf-icon-upload,
+    .uf-icon-loading {
+        @apply w-12 h-12 text-gray-400 mb-6;
+    }
+    .uf-icon-loading {
+        @apply hidden animate-spin;
+    }
+
+    .uf-input-wrap {
+        @apply flex flex-col items-center justify-center;
+
+        .uf-input {
+            @apply hidden;
+        }
+        .uf-label {
+            @apply relative text-ellipsis whitespace-nowrap cursor-pointer inline-flex overflow-hidden mb-8;
+
+            .uf-selected-label {
+                @apply absolute inset-0 items-center justify-center bg-primary-light hidden;
+
+                &.selected {
+                    @apply inline-flex;
+                }
+            }
+        }
+        .uf-drag-drop {
+            @apply hidden;
+        }
+        .uf-btn {
+            @apply cursor-pointer rounded-md bg-primary-medium py-2 px-3 text-sm font-semibold text-white transition-all hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-medium;
+        }
+    }
+
+    .uf-uploading,
+    .uf-success,
+    .uf-error {
+        @apply hidden;
+    }
+    .uf-success {
+        @apply text-xl py-4 px-8 rounded-lg bg-green-600 text-white;
+    }
+    .uf-error {
+        @apply py-2 px-4 rounded-lg bg-red-600 text-white;
+    }
+    .uf-uploading {
+        @apply text-center;
+
+        .progress-wrap {
+            @apply max-w-full w-60 h-7 rounded-lg border border-primary-medium p-px mt-2 relative;
+
+            .progress-bar {
+                @apply w-0 h-full rounded-lg bg-primary-medium;
+            }
+
+            .progress-message {
+                @apply absolute inset-0 flex items-center justify-center text-sm font-semibold;
+            }
+        }
+    }
+
+    &.dd-enabled {
+        @apply outline-dashed outline-primary-medium transition-colors;
+
+        .uf-input-wrap {
+            .uf-label {
+                @apply mb-0;
+            }
+            .uf-drag-drop {
+                @apply inline;
+            }
+            .uf-btn {
+                @apply hidden;
+            }
+        }
+
+        &.is-dragover {
+            @apply bg-primary-light;
+        }
+    }
+
+    &.is-uploading {
+        .uf-icon-loading {
+            @apply block;
+        }
+        .uf-input-wrap {
+            @apply hidden;
+        }
+        .uf-uploading {
+            @apply block;
+        }
+    }
+    &.is-success {
+        @apply outline-hidden bg-white p-0;
+
+        .uf-input-wrap {
+            @apply hidden;
+        }
+        .uf-success {
+            @apply block;
+        }
+    }
+    &.is-error {
+        .uf-error {
+            @apply block mt-4;
+        }
+    }
+}
+
+.view-file-modal {
+    @apply flex flex-wrap items-stretch h-full relative;
+
+    .detail-list {
+        @apply w-full md:w-1/3 bg-primary-light p-4;
+    }
+    .file-pane {
+        @apply w-full md:w-2/3 p-4 md:pl-8 border-l border-gray-300 relative;
+
+        .image-panel {
+            @apply w-full h-full flex items-center justify-center relative;
+        }
+
+        .file-panel {
+            @apply w-full h-full hidden items-center justify-center;
+
+            .preview-frame {
+                @apply w-full h-[550px];
+            }
+            .no-preview {
+                @apply w-full h-[550px] hidden flex-col items-center justify-center;
+            }
+        }
+
+        &.pane-is-file {
+            .image-panel {
+                @apply hidden;
+            }
+            .file-panel {
+                @apply flex;
+            }
+
+            &.preview-unavailable {
+                .preview-frame {
+                    @apply hidden;
+                }
+                .no-preview {
+                    @apply flex;
+                }
+            }
+        }
+
+        .flash {
+            @apply hidden absolute top-0 left-1/2 -translate-x-1/2 px-4 py-2 max-w-[20rem] text-center rounded-b-lg text-white;
+
+            &.error {
+                @apply bg-red-600;
+            }
+            &.success {
+                @apply bg-green-600;
+            }
+
+            &.open {
+                @apply block;
+            }
+        }
+    }
+    .loader {
+        @apply absolute inset-0 hidden items-center justify-center bg-white/50 z-10;
+
+        .vf-icon-loading {
+            @apply w-12 h-12 text-primary-medium mb-6 animate-spin;
+        }
+    }
+
+    &.loading {
+        .loader {
+            @apply flex;
+        }
+    }
+}

@@ -1,0 +1,6 @@
+import{r as e,t}from"./xhr-BSj_OtH8.js";function n(){window.addEventListener(`token-regenerated`,()=>{i(),a()},!0),r()}function r(){if(typeof CF_STATUS<`u`&&CF_STATUS){let t=new FormData;t.append(`foo`,`bar`),e(`/ajax/ping/token`,t,!1).then(e=>{if(e.token){document.querySelector(`[name="csrf-token"]`).setAttribute(`content`,e.token);for(let t of document.querySelectorAll(`[name="_token"]`))t.value=e.token}window.dispatchEvent(new Event(`token-regenerated`))}).catch(()=>{window.dispatchEvent(new Event(`token-regenerated`))})}else window.dispatchEvent(new Event(`token-regenerated`))}async function i(){let e=new FormData;e.append(`page_url`,window.location.href),e.append(`referrer`,document.referrer),t(`/ajax/ping/form_tracking`,e)}async function a(){if(typeof URLID>`u`)return!1;let t=new FormData;t.append(`url`,URLID),e(`/ajax/ping/cms_url`,t).then(e=>{if(e.url){let t=`
+                <a 
+                    href="${e.url}" target="_blank" 
+                    class="btn btn--black fixed right-0 bottom-0 mb-2 mr-2"
+                >Edit this page</a>
+            `,n=new DOMParser().parseFromString(t,`text/html`).body.childNodes[0];document.querySelector(`body`).appendChild(n)}}).catch(e=>{})}export{n as runCommonPings};

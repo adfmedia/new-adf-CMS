@@ -1,0 +1,19 @@
+@utility filter-white {
+    filter: brightness(0) invert(1);
+}
+
+@utility filter-black {
+    filter: brightness(0%);
+}
+
+@utility filter-green {
+    filter: invert(6%) sepia(46%) saturate(4610%) hue-rotate(248deg) brightness(106%) contrast(97%);
+}
+
+@utility filter-blue {
+    filter: invert(64%) sepia(60%) saturate(534%) hue-rotate(169deg) brightness(93%) contrast(94%);
+}
+
+@utility filter-gray-500 {
+    filter: invert(47%) sepia(8%) saturate(951%) hue-rotate(183deg) brightness(91%) contrast(97%);
+}

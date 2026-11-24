@@ -1,0 +1,23 @@
+@layer components {
+    .breadcrumbs {
+        li {
+            @apply flex min-w-min;
+
+            svg {
+                @apply relative;
+            }
+        }
+
+        li:last-of-type  {
+            @apply min-w-0;
+
+            svg {
+                @apply shrink-0;
+            }
+
+            div {
+                @apply truncate;
+            }
+        }
+    }
+}

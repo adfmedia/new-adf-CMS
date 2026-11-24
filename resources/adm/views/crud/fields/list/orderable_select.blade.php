@@ -1,0 +1,1 @@
+{{ implode(', ', data_get($Item, $field)) }}

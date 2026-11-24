@@ -1,0 +1,165 @@
+/* purgecss start ignore */
+@layer components {
+    .two-col-list {
+        @apply columns-1 my-8 xs:columns-2;
+    }
+
+    .bg-grey-video {
+        @apply bg-gray-400;
+    }
+
+    .h-video-wysiwyg {
+        @apply min-h-92;
+    }
+
+    [data-video-preload] {
+        h3 {
+            @apply text-white text-4xl mt-0;
+        }
+    }
+
+    /* Responsive tables (inside WYSIWYG content & custom class wrapper) */
+    .prose, .responsive-table {
+        table {
+            @apply border border-gray-300 border-collapse m-0 p-0 w-full table-fixed;
+
+            tr {
+                @apply bg-gray-100 border border-gray-300 p-2;
+
+                &:nth-child(even) {
+                    @apply bg-gray-200;
+                }
+            }
+
+            thead {
+                tr {
+                    @apply bg-gray-700 text-white;
+                }
+            }
+            tfoot {
+                tr {
+                    @apply bg-gray-600 text-white;
+                }
+            }
+
+            th, td {
+                @apply py-2! px-4! text-left;
+
+                p {
+                    @apply mt-0! mb-4!;
+
+                    &:last-child {
+                        @apply mb-0!;
+                    }
+                }
+            }
+
+            th {
+                @apply font-serif font-semibold;
+            }
+
+            caption {
+                @apply text-2xl mt-2 mb-3;
+            }
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        body:not(.mce-content-body) {
+            .prose, .responsive-table {
+                colgroup, colgroup col {
+                    @apply hidden;
+                }
+
+                table {
+                    @apply border-0;
+
+                    thead {
+                        @apply border-0 h-px -m-px overflow-hidden p-0 absolute w-px;
+                        clip: rect(0 0 0 0);
+                    }
+
+                    tfoot {
+                        @apply border-b-0!;
+
+                        tr {
+                            @apply border-b-0!;
+                        }
+                    }
+
+                    tr {
+                        @apply border-b-3 border-gray-300 block;
+                    }
+
+                    td {
+                        @apply border-b border-gray-300 block text-sm text-right;
+
+                        &::before {
+                            @apply float-left font-bold uppercase;
+                            content: attr(data-label);
+                        }
+
+                        &:last-child {
+                            @apply border-b-0;
+                        }
+                    }
+
+                    caption {
+                        @apply text-xl;
+                    }
+                }
+            }
+        }
+    }
+    /* END Responsive tables */
+
+    /* Share icons */
+    .share-icons {
+        li {
+            @apply list-none;
+
+            &:before {
+                @apply absolute -top-0.5 left-0 text-gray-900;
+                content: " "!important;
+                font-size: 0;
+            }
+        }
+    }
+
+    .icon-facebook {
+        @apply text-[#4267B2] hover:text-[#003057];
+    }
+
+    .icon-twitter {
+        @apply text-[#00aced] hover:text-[#003057];
+    }
+
+    .icon-twitterx {
+        @apply text-[#000000] hover:text-[#003057];
+    }
+
+    .icon-youtube {
+        @apply text-[#bb0000] hover:text-[#003057];
+    }
+
+    .icon-linkedin {
+        @apply text-[#007bb6] hover:text-[#003057];
+    }
+
+    .icon-whatsapp {
+        @apply text-[#075e54] hover:text-[#003057];
+    }
+    /* END Share icons */
+}
+
+.mce-content-body {
+  [data-aos] {
+    @apply opacity-100! transform-none!;
+  }
+}
+
+.grecaptcha-badge {
+    @apply hidden!;
+}
+
+/* purgecss end ignore */

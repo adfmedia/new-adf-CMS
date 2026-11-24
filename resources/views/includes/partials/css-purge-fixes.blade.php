@@ -1,0 +1,1 @@
+<span class="search-highlight"></span>
