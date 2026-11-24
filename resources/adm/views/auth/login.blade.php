@@ -2,16 +2,16 @@
 
 @section('content')
 
-<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-900">
+<div class="flex min-h-full items-center justify-center flex-col gap-8 py-12 px-4 sm:px-6 lg:px-8">
+    <img
+        class="h-16 w-16"
+        src="{{ Vite::asset('resources/adm/images/adfmedia-logo.svg') }}"
+        alt="adfmedia logo"
+        width="32"
+        height="32"
+    >
     <div class="w-full max-w-md space-y-8 bg-gray-50 p-8 rounded-lg shadow-xl">
         <div class="text-center">
-            <img
-                class="mx-auto h-20 w-20 rounded-full bg-gray-900 p-3"
-                src="{{ Vite::asset('resources/adm/images/adfmedia-logo.svg') }}"
-                alt="adfmedia logo"
-                width="32"
-                height="32"
-            >
             @if(session('status'))
                 <div class="pt-4 mb-4 font-semibold text-sm text-green-600">
                     {{ session('status') }}
@@ -52,15 +52,6 @@
                             href="{{ route('adm.forgot-password') }}" 
                             class="text-sm text-primary-medium hover:underline"
                         >Forgot your password?</a>
-                    </div>
-                @endif
-
-                @if(Route::has('adm.login.bespokeid'))
-                    <div class="mt-2 text-center">
-                        <a 
-                            href="{{ route('adm.login.bespokeid') }}" 
-                            class="text-xs text-gray-500 hover:underline"
-                        >Sign in with BespokeID</a>
                     </div>
                 @endif
             </div>

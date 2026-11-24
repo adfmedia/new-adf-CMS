@@ -5,8 +5,6 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'adm', 'namespace' => 'Adm\Http\Controllers', 'middleware' => ['web']], function () {
     Route::get('/login', 'AuthController@create')->middleware('guest')->name('adm.login');
     Route::post('/login', 'AuthController@store')->middleware('guest');
-    Route::get('/login/bespokeid', 'BespokeIdAuthController@redirect')->middleware('guest')->name('adm.login.bespokeid');
-    Route::get('/login/bespokeid/callback', 'BespokeIdAuthController@callback')->middleware('guest')->name('adm.login.bespokeid.callback');
     Route::any('/forgot-password', 'AuthController@forgot_password')->middleware('guest')->name('adm.forgot-password');
     Route::any('/reset-password/{token}', 'AuthController@reset_password')->middleware('guest')->name('adm.reset-password');
     Route::any('/mfa-enrol', 'AuthController@mfa_enrol')->name('adm.mfa-enrol');

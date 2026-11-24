@@ -38,7 +38,6 @@
                 <a class="flex items-center z-10 relative transition-all duration-200 group px-[22px] py-[15px] lg:px-[32px] lg:py-[22px] rounded-md bg-gray-900 text-white hover:bg-gray-100 hover:text-gray-900 hover:-translate-y-[2px] w-fit" href="{{ route('theme') }}/adm"><span class="block text-inherit w-full h-full rounded-md text-lg font-chivo font-semibold">Login to CMS</span></a>
             </div>
         </div>
-        <p class="text-sm text-right">developer@bespokedigital.agency | !Staff0nly!</p>
         @if( $FooterMenu && !empty($FooterMenu->structure) )
             <nav class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
                 @foreach( $FooterMenu->structure as $link )

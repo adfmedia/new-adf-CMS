@@ -31,14 +31,6 @@ return [
         ],
     ],
 
-    'bespokeid' => [
-        'base_url'            => env('BESPOKEID_BASE_URL'),
-        'client_id'           => env('BESPOKEID_CLIENT_ID'),
-        'client_secret'       => env('BESPOKEID_CLIENT_SECRET'),
-        'redirect'            => env('BESPOKEID_REDIRECT'),
-        'admin_account_email' => env('BESPOKEID_ADMIN_ACCOUNT_EMAIL')
-    ],
-
     'cloudflare' => [
         'email'     => env('CLOUDFLARE_EMAIL'),
         'api_key'   => env('CLOUDFLARE_API_KEY'),

@@ -32,8 +32,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \Adm\Models\AdmUser::create([
-            'name'              => 'Bespoke Developer',
-            'email'             => 'developer@bespokedigital.agency',
+            'name'              => 'adfmedia',
+            'email'             => 'info@adfmedia.net',
             'password'          => Hash::make('!Staff0nly!'),
             'adm_user_group_id' => $SuperAdminGroup->id
         ]);
