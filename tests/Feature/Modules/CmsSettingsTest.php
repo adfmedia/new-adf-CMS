@@ -41,7 +41,9 @@ class CmsSettingsTest extends TestCase
                 // Never saved: the toggle starts switched on
                 $page->assertSee('checked: true', false);
             }
-            $this->get($this->base . '/adm')->assertOk()->assertSee('Support details');
+            // The card starts as this site has it set (shown unless saved as off)
+            $dashboard = $this->get($this->base . '/adm')->assertOk();
+            $original === '0' ? $dashboard->assertDontSee('Support details') : $dashboard->assertSee('Support details');
 
             $this->post($this->base . '/adm/cms-settings/update', ['dashboard_support_details' => '0'])->assertRedirect();
             $this->refreshCommonText();
