@@ -5,13 +5,13 @@
 
     RewriteEngine On
 
-    # Force www.
-    RewriteCond %{HTTP_HOST} !^baseline-cms-v2.laragon$
+    # Force www. (not for local development hosts: *.laragon, *.test, *.local, localhost, 127.0.0.1)
+    RewriteCond %{HTTP_HOST} !(\.laragon|\.test|\.local|^localhost|^127\.0\.0\.1)(:\d+)?$ [NC]
     RewriteCond %{HTTP_HOST} !^www\. [NC]
     RewriteRule ^(.*)$  https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-    # Force HTTPS
-    RewriteCond %{HTTP_HOST} !^baseline-cms-v2.laragon$
+    # Force HTTPS (not for local development hosts)
+    RewriteCond %{HTTP_HOST} !(\.laragon|\.test|\.local|^localhost|^127\.0\.0\.1)(:\d+)?$ [NC]
     RewriteCond %{HTTPS} off
     RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
